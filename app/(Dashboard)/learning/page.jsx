@@ -16,7 +16,7 @@ const page = () => {
   const style ={
     main: `flex flex-col sm:flex-row font-bold rounded-lg`,
     left_section_light : `  w-full sm:w-screen-1/2 p-5`,
-    right_section: ` w-full sm:w-screen-1/2 h-max p-5 `,
+    right_section: ` w-full sm:w-screen-1/2 h-max p-5 m-5`,
     buttonContainer:`w-full text-sm grid grid-cols-1 md:grid-cols-2 gap-4 `,
     button: `w-full border font-bold py-2 px-4 rounded-lg hover:translate-y-1 transition-all`,
     linkButton:` w-full font-bold py-2 px-4 rounded-lg hover:translate-y-1 transition-all`,
