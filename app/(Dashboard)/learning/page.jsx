@@ -16,7 +16,7 @@ const page = () => {
   const style ={
     main: `flex flex-col sm:flex-row font-bold rounded-lg`,
     left_section_light : `  w-full sm:w-screen-1/2 p-5`,
-    right_section: ` w-full sm:w-screen-1/2 h-max p-5 m-5`,
+    right_section: ` w-full sm:w-screen-1/2 h-max p-5 sm:m-5 rounded-lg`,
     buttonContainer:`w-full text-sm grid grid-cols-1 md:grid-cols-2 gap-4 `,
     button: `w-full border font-bold py-2 px-4 rounded-lg hover:translate-y-1 transition-all`,
     linkButton:` w-full font-bold py-2 px-4 rounded-lg hover:translate-y-1 transition-all`,
@@ -24,14 +24,14 @@ const page = () => {
 
   const light = {
     main:`bg-gray-100 text-stone-800`,
-    right_section: `bg-white `,
+    right_section: `bg-white`,
     button: `text-[#0F172A] hover:text-white bg-white-500 border-[#0F172A] hover:bg-[#253762] `,
     linkButton:`bg-[#2d4781] hover:bg-[#253762] text-white  `,
   }
 
   const dark ={
     main: `bg-gray-700 text-stone-200`,
-    right_section: `bg-[#253762] rounded-lg`,
+    right_section: `bg-[#253762] `,
     button: `text-stone-200 hover:text-[#0F172A] bg-[#253762] border-stone-200 hover:bg-stone-300`,
     linkButton:`bg-[#0F172A] hover:bg-[#3c5fad] text-white  `,
 
