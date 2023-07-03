@@ -35,7 +35,7 @@ const CourseDescription = ({isDark}) => {
       <div className='p-4 space-y-5'>
         <h2 className={style.course_title}>{courseTitle}</h2>
         
-        <div className='flex flex-row items-between items-center w-max rounded-full shadow p-1' >
+        <div className={`flex flex-row items-between items-center w-max rounded-full shadow p-1 ${isDark? "bg-[#192643]" : "" }`} >
         <img
           src={trainerSvg}
           alt="trainer"
