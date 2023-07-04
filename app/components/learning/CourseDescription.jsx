@@ -5,7 +5,7 @@ const CourseDescription = ({isDark}) => {
 
   console.log(isDark)
   const style = {
-    container : ` p-5 rounded-xl  h-full flex flex-col `,
+    container : ` p-5 rounded-xl  h-full flex flex-col font-normal text-sm `,
     image_container : `bg-cover bg-center bg-no-repeat rounded-xl border-0 `,
     course_title : ` text-xl font-bold`,
     gray_500 : `text-gray-500`
