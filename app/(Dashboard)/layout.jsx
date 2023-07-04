@@ -1,9 +1,12 @@
 "use client"
 import Aside from "../components/dashboard/Aside";
-import { useState } from "react";
+import { useState, createContext } from "react";
 // import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+export const DarkModeContext = createContext();
+
 
 export default function layout({ children }) {
     const [dark, setDark] = useState(true);
@@ -59,6 +62,7 @@ export default function layout({ children }) {
         }
     };
     return (
+    <DarkModeContext.Provider value={dark}>
         <div className={`bg-white dark:bg-[#0F172A]`}>
             {/* {isAuthenticated && ( */}
             <>
@@ -94,5 +98,6 @@ export default function layout({ children }) {
                 {children}
             </main>
         </div>
+    </DarkModeContext.Provider>    
     );
 }
