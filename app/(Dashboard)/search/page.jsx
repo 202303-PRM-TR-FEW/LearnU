@@ -10,6 +10,7 @@ function page () {
         <div className={styling.container} >
             <h1 className={styling.textHeader}>Find your favorites</h1>
             <SearchForm/>
+
         </div>
         
     )
