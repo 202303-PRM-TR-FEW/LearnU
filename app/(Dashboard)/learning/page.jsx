@@ -75,6 +75,7 @@ const page = () => {
 
   return (
     <div className={`${style.main} ${isDark ? dark.main : light.main}`}>
+      HELLO
       <div className={style.left_section}>
         <div className='flex justify-between'>
           <h1 className='text-3xl'>My Learning</h1>
