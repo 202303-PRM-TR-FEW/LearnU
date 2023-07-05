@@ -4,6 +4,6 @@ export default async function page() {
     const courses = await getCourses()
     console.log("courses", courses)
     return (
-        <div>page</div>
+        <div className="text-black">page</div>
     )
 }

@@ -3,7 +3,6 @@ import {AiFillClockCircle, AiFillStar} from "react-icons/ai"
 
 const CourseDescription = ({isDark}) => {
 
-  console.log(isDark)
   const style = {
     container : ` p-5 rounded-xl  h-full flex flex-col font-normal text-sm `,
     image_container : `bg-cover bg-center bg-no-repeat rounded-xl border-0 `,

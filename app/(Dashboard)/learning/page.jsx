@@ -7,6 +7,7 @@ import {IoIosStats} from "react-icons/io"
 import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/learning/CourseDescription'
 import CourseCard from '@/app/components/learning/CourseCard'
+import getCourses from "@/app/lib/getCourses"
 
 const page = () => {
   const data = [
@@ -75,7 +76,6 @@ const page = () => {
 
   return (
     <div className={`${style.main} ${isDark ? dark.main : light.main}`}>
-      HELLO
       <div className={style.left_section}>
         <div className='flex justify-between'>
           <h1 className='text-3xl'>My Learning</h1>
