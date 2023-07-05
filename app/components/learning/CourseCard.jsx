@@ -14,11 +14,10 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
     const percentage = "45"
     //PROPS END
     
-    // const [courseId, setCourseId] = useState("");
 
 
     const dark = {
-        bg_dark: `bg-gray-500 hover:bg-gray-600 hover:border-gray-500 text-stone-200`,
+        bg_dark: `bg-gray-600 hover:bg-gray-800 hover:border-gray-500 text-stone-200`,
     }
 
   return (
