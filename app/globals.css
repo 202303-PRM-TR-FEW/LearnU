@@ -41,3 +41,7 @@ body {
     @apply flex flex-col items-center justify-between;
   }
 }
+
+.custom-max-width {
+  max-width: calc(100% + 2rem);
+}
