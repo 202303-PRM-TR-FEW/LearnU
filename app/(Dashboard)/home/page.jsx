@@ -6,7 +6,6 @@ import { TbWorld } from "react-icons/tb";
 import { MdOutlineDesignServices } from "react-icons/md";
 import { SiMaterialdesignicons } from "react-icons/si";
 import { BsLightbulbFill } from "react-icons/bs";
-import CourseCard from "@/app/components/learning/CourseCard";
 import LearningCard from "@/app/components/home/LearningCard";
 export default async function page() {
     const courses = await getCourses();

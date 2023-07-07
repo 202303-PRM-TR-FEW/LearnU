@@ -1,17 +1,17 @@
 "use client"
 import Aside from "../components/dashboard/Aside";
 import { useState, createContext } from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Image from "next/image";
 export const DarkModeContext = createContext();
 
 
 export default function layout({ children }) {
     const [dark, setDark] = useState(true);
     const [open, setOpen] = useState(false);
-    // const { isAuthenticated, user } = useAuth0();
+    const { data: session, status } = useSession();
 
     const asideHandler = () => {
         setOpen((prev) => !prev);
@@ -62,42 +62,46 @@ export default function layout({ children }) {
         }
     };
     return (
-    <DarkModeContext.Provider value={dark}>
-        <div className={`bg-white dark:bg-[#0F172A]`}>
-            {/* {isAuthenticated && ( */}
-            <>
-                <div className="fixed w-full z-30 flex bg-white dark:bg-[#0F172A] p-2 items-center justify-center h-16 px-10">
-                    <div className="flex items-center justify-center flex-none h-full ml-12 duration-500 ease-in-out transform logo dark:text-white">
-                        Home
-                    </div>
-                    <div className="flex items-center justify-center h-full grow"></div>
-                    <div className="flex items-center justify-center flex-none h-full text-center">
-                        <div className="flex items-center px-3 space-x-3">
-                            <div className="flex justify-center flex-none">
-                                <div className="flex w-8 h-8 ">
-                                    <img
-                                        src={"https://avatars.githubusercontent.com/u/78679521?v=4"}
-                                        alt="profile"
-                                        className="object-cover rounded-full shadow"
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className="hidden text-sm text-black cursor-pointer md:block md:text-md dark:text-white"
-                            >
-                                {/* {user.name} */}Ahmed
-                            </div>
+        <DarkModeContext.Provider value={dark}>
+            <div className={`bg-white dark:bg-[#0F172A]`}>
+                <>
+                    <div className="fixed w-full z-30 flex bg-white dark:bg-[#0F172A] p-2 items-center justify-center h-16 px-10">
+                        <div className="flex items-center justify-center flex-none h-full ml-12 duration-500 ease-in-out transform logo dark:text-white">
+                            Home
                         </div>
+                        <div className="flex items-center justify-center h-full grow"></div>
+                        <div className="flex items-center justify-center flex-none h-full text-center">
+                            {session ? (
+                                <div className="flex items-center px-3 space-x-3">
+                                    {session.user.image && (<div className="flex justify-center flex-none">
+                                        <div className="flex w-8 h-8 ">
+                                            <img
+                                                src={session.user.image}
+                                                alt="profile"
+                                                className="object-cover rounded-full shadow"
+                                            />
+                                        </div>
+                                    </div>)}
+                                    <div
+                                        onClick={() => signOut()}
+                                        className="hidden text-sm text-black cursor-pointer md:block md:text-md dark:text-white"
+                                    >
+                                        {session.user.name}
+                                    </div>
+                                </div>
+                            ) : (<button onClick={() => signIn()} className="px-8 py-3 text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-800">
+                                Login
+                            </button>)}
+                        </div>
+
                     </div>
-                </div>
-                <Aside asideHandler={asideHandler} modeHandler={modeHandler} />
-            </>
-            {/* )} */}
-            <ToastContainer />
-            <main className="min-h-screen px-2 pt-20 pb-4 ml-12 duration-500 ease-in-out transform content md:px-5 ">
-                {children}
-            </main>
-        </div>
-    </DarkModeContext.Provider>    
+                    <Aside asideHandler={asideHandler} modeHandler={modeHandler} />
+                </>
+                <ToastContainer />
+                <main className="min-h-screen px-2 pt-20 pb-4 ml-12 duration-500 ease-in-out transform content md:px-5 ">
+                    {children}
+                </main>
+            </div>
+        </DarkModeContext.Provider>
     );
 }
