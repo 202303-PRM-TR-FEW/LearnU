@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { useState } from 'react';
+import MapContainer from './ratingAndLevel'
 
-// Define the object with class names
+
 const classNames = {
   maxContainer: ' my-10 container',
   buttonsContainer: 'md:flex md:flex-wrap grid grid-cols-2 gap-4 my-10 ' ,
@@ -37,6 +38,8 @@ function SearchForm() {
     'Big Data', 
     'Design'
   ];
+
+  
   
 
   const handleCheckboxChange = (event) => {
@@ -122,8 +125,20 @@ function SearchForm() {
       </div>
 
       <hr className="w-11/12 mb-3"/>
-      <span className={classNames.categoryContainerText}>RATING</span>
-      
+        <div className='md:flex md:flex-wrap grid grid-cols-1 '>
+
+          <div className=''>
+             <span className={classNames.categoryContainerText}>RATING</span>
+           <div className={classNames.maxContainer}>
+             <MapContainer />
+           </div>
+          </div>
+
+          <div className=''>
+            <span className={classNames.categoryContainerText}>LEVEL</span>
+          </div>
+
+        </div>
     </div>
   );
 }
