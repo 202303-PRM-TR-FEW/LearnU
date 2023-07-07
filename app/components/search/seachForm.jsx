@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import MapContainer from './ratingAndLevel'
 
-// Define the object with class names
+
 const classNames = {
   maxContainer: ' my-10 container',
   buttonsContainer: 'md:flex md:flex-wrap grid grid-cols-2 gap-4 my-10 ' ,
