@@ -3,51 +3,49 @@ import React from 'react'
 import Link from 'next/link'
 import { useContext } from 'react'
 import {IoIosStats} from "react-icons/io"
+import { useEffect, useState } from "react"
+
+
 
 import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/learning/CourseDescription'
 import CourseCard from '@/app/components/learning/CourseCard'
+import getCourses from "@/app/lib/getCourses"
+
 
 const page = () => {
-  const data = [
-    {
-      id: 1,
-      title: "Course Title 1",
-      trainer: "trainer name 1",
-      duration: "00",
-      rating: "3.0",
-      description: "This comprehensive course is designed to provide a solid foundation in web development. Whether you're a beginner or have some experience, this course will take you through the essentials of building websites from scratch."
-    },
-    {
-      id: 2,
-      title: "Course Title 2",
-      trainer: "trainer name 2",
-      duration: "01",
-      rating: "4.5",
-      description: "This comprehensive course is designed to provide a solid foundation in web development. Whether you're a beginner or have some experience, this course will take you through the essentials of building websites from scratch."
-    },
-    {
-      id: 3,
-      title: "Course Title 3",
-      trainer: "trainer name 3",
-      duration: "02",
-      rating: "4.2",
-      description: "This comprehensive course is designed to provide a solid foundation in web development. Whether you're a beginner or have some experience, this course will take you through the essentials of building websites from scratch."
-    },
-    {
-      id: 4,
-      title: "Course Title 4",
-      trainer: "trainer name 4",
-      duration: "03",
-      rating: "4.8",
-      description: "This comprehensive course is designed to provide a solid foundation in web development. Whether you're a beginner or have some experience, this course will take you through the essentials of building websites from scratch."
-    },
-  ];
+  const [courses, setCourses] = useState([]);
+  const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
   
+  const [selectedCourse, setSelectedCourse] = useState(courses[0]);
+ 
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCourses();
+      setCourses(data);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handleSelectedCourseChange = () => {
+      const selectedCourse = courses.find((course) => course.id === courseId) 
+      setSelectedCourse(selectedCourse)
+    };
+
+    if (courses.length > 0) {
+      handleSelectedCourseChange();
+    }
+  },[courseId, courses])
+    
 
   const mode = useContext(DarkModeContext)
   const isDark = !mode
   
+ 
+
 
   const style ={
     main: `flex flex-col sm:flex-row font-bold rounded-lg`,
@@ -85,13 +83,14 @@ const page = () => {
 
         </div>
           <div className='space-y-5'>
-            {data.map(course => (
-              <CourseCard key={course.id} title={course.title} trainer={course.trainer} isDark={isDark} />
+            {courses.map(course => (
+              <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img}  isDark={isDark} courseId={course.id}
+              setCourseId={setCourseId} />
             ))}
           </div> 
       </div>
       <div className={`${style.right_section} ${isDark? dark.right_section : light.right_section}`}>
-        <CourseDescription isDark={isDark}/>
+        <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
         <div className={style.buttonContainer}>
           <button className={`${style.button} ${isDark? dark.button : light.button}`}>REVIEW COURSE</button>
           <Link href="/#">
