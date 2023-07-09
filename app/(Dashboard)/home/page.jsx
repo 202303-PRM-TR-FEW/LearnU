@@ -11,7 +11,6 @@ export default async function page() {
     const courses = await getCourses();
     // console.log(courses);
     return (
-<<<<<<< HEAD
 
 
         <div className="flex flex-col w-full h-full">
@@ -40,8 +39,5 @@ export default async function page() {
             </div>
         </div>
 
-=======
-        <div>page</div>
->>>>>>> 25cf97d (last commit done.)
     )
 }
