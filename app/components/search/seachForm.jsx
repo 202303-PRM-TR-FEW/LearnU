@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import MapContainer from './ratingAndLevel'
+import LevelFilter from './levelFilter'
 
 // Define the object with class names
 const classNames = {
@@ -130,14 +131,15 @@ function SearchForm() {
           <div className=''>
              <span className={classNames.categoryContainerText}>RATING</span>
            <div className={classNames.maxContainer}>
-             <MapContainer />
+             <MapContainer/>
            </div>
           </div>
 
           <div className=''>
             <span className={classNames.categoryContainerText}>LEVEL</span>
+            
           </div>
-
+          <LevelFilter/>
         </div>
     </div>
   );
