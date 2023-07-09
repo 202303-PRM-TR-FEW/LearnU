@@ -11,8 +11,6 @@ export default async function page() {
     const courses = await getCourses();
     // console.log(courses);
     return (
-
-
         <div className="flex flex-col w-full h-full">
             <Title title="Featured Courses" />
             <div className="grid gap-2 mb-12 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
