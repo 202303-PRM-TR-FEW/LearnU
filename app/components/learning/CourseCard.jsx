@@ -10,18 +10,13 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
         setCourseId(courseId);
       };
 
-    //PROPS START
     const percentage = "45"
-    //PROPS END
-    
-
-
     const dark = {
         bg_dark: `bg-gray-600 hover:bg-gray-800 hover:border-gray-500 text-stone-200`,
     }
 
   return (
-    <div className={` group shadow-sm text-xs sm:text-md font-normal w-full grid grid-cols-4  bg-white rounded-2xl  p-2 hover:border border-blue-300 hover:bg-blue-100 ${isDark? dark.bg_dark : ""} `} onClick={handleClick}>
+    <div className={` group shadow-sm text-xs sm:text-md font-normal w-full grid grid-cols-4 rounded-2xl  p-2 hover:border border-blue-300 hover:bg-blue-100 ${isDark? dark.bg_dark : "bg-white"} `} onClick={handleClick}>
 
         <div className='left-section flex flex-grow items-center justify-center '>
             <div className='w-full h-full'>

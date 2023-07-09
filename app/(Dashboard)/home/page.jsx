@@ -11,8 +11,8 @@ export default async function page() {
     const courses = await getCourses();
     // console.log(courses);
     return (
-learning-data-fetch
-        <div className="text-black">page</div>
+<<<<<<< HEAD
+
 
         <div className="flex flex-col w-full h-full">
             <Title title="Featured Courses" />
@@ -40,5 +40,8 @@ learning-data-fetch
             </div>
         </div>
 
+=======
+        <div>page</div>
+>>>>>>> 25cf97d (last commit done.)
     )
 }
