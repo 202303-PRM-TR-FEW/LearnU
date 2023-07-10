@@ -16,7 +16,6 @@ import getCourses from "@/app/lib/getCourses"
 const page = () => {
   const [courses, setCourses] = useState([]);
   const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
-  
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
  
   

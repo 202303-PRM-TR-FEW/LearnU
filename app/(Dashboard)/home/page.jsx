@@ -11,8 +11,7 @@ export default async function page() {
     const courses = await getCourses();
     // console.log(courses);
     return (
-learning-data-fetch
-        <div className="text-black">page</div>
+
 
         <div className="flex flex-col w-full h-full">
             <Title title="Featured Courses" />
