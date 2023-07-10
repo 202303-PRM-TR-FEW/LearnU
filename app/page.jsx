@@ -4,13 +4,10 @@ export default function Home() {
     return (
         
         <div className="h-screen flex p-10">
-            <div className="sm:grid sm:grid-cols-2 flex justify-center items-center bg-stone-100 rounded-3xl text-stone-600 shadow-xl" >
+            <div className="sm:grid sm:grid-cols-2 flex flex-wrap justify-center items-center bg-stone-100 rounded-3xl text-stone-600 shadow-xl" >
             <div className="sm:w-screen-1/2 flex flex-col justify-center items-center">
                 <div className="w-1/2 space-y-5"> 
                 <div className="sm:w-screen-2/2 flex flex-col justify-center items-center">
-                    <img className="h-32 w-full object-cover" src="back-img.jpg"></img>
-                    
-                    
                 </div>
                     <div className="flex flex-col space-x-1">
                         <AiOutlineDingding size='3rem' color='blue-500'/>
@@ -37,26 +34,14 @@ export default function Home() {
                                 SIGN UP
                             </Link>
                         </button></div>
-
-                         
-
                         </div>
-                        
-                        
-                        
-
-
-    
                     </div>
-                    
             </div>
         </div>
-          
-        </div>  
-        
+        <div id="INTRO" className="flex flex-col justify-between items-center flex-shrink-0 flex-grow-0 self-stretch w-691 h-804 opacity-100 bg-white  shadow-md border border-gray-200  ">
+            <img style={{ backgroundImage: 'url("https://assets.api.uizard.io/api/cdn/stream/a8ce660d-47da-404a-b3b3-63ca6970ddcf.png")' }}></img>
         </div>
-        
-        
+        </div>  
+        </div>
     )
-
 } 
