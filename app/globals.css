@@ -11,6 +11,16 @@
   background-repeat: no-repeat;
 }
 
+.buttons {
+  width: 8rem;
+}
+
+
+.container {
+  justify-content: center;
+  
+}
+
 
 
 @layer base {
