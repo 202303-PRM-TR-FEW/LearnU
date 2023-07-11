@@ -17,15 +17,15 @@ const Info = () => {
         numbersContainer: `bg-gray-100 rounded-xl border-4 border-gray-200 `,
     }
   return (
-    <div className=" sm:grid sm:grid-cols-3 flex flex-col items-center justify-center space-y-5 ">
+    <div className=" lg:grid lg:grid-cols-3 flex flex-col items-center justify-center space-y-5 ">
 
         <div className='left-container'>
-            <div className=' w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden  '>
+            <div className=' w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden  '>
                 <img className=' w-full h-full object-cover' src={user.img} alt="" />
             </div>
         </div>
 
-        <div className='right-container flex flex-col justify-center items-center sm:col-span-2 sm:items-start space-y-5 '>
+        <div className='right-container flex flex-col justify-center items-center lg:col-span-2 lg:items-start space-y-5 '>
 
             <div>
                 <h1 className='text-2xl font-bold'>{user.name}</h1>
