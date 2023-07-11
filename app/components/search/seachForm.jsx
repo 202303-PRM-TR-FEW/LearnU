@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { useState } from 'react';
+import MapContainer from './RatingFilter'
+import LevelFilter from './levelFilter'
 
 // Define the object with class names
 const classNames = {
@@ -13,7 +15,8 @@ const classNames = {
   SearchCatButtons: 'item max-w-xs px-6 py-3 mr-2 text-lg  mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700',
   categoryContainerText: "w-330 h-13 flex-grow-1 m-0 overflow-hidden text-sm font-semibold uppercase text-left tracking-normal leading-4 whitespace-pre-line opacity-100 visible font-sans",
   checkContainer: 'my-5 container ',
-  itemsResponsivnes: "md:flex md:flex-wrap grid grid-cols-2 gap-4"
+  itemsResponsivnes: "md:flex md:flex-wrap grid grid-cols-2 gap-4",
+  levelContainer: "my-10 container  "
 };
 
 function SearchForm() {
@@ -37,6 +40,8 @@ function SearchForm() {
     'Big Data', 
     'Design'
   ];
+
+  
   
 
   const handleCheckboxChange = (event) => {
@@ -103,7 +108,7 @@ function SearchForm() {
         </form>
       </div>
 
-      <hr className="w-11/12 mb-3" />
+      <hr className="w-11/12 mb-3"/>
       <span className={classNames.categoryContainerText}>TOP SEARCHES</span>
 
       <div className={classNames.maxContainer}>
@@ -122,8 +127,22 @@ function SearchForm() {
       </div>
 
       <hr className="w-11/12 mb-3"/>
-      <span className={classNames.categoryContainerText}>RATING</span>
-      
+        <div className='md:flex md:flex-wrap grid grid-cols-1 '>
+
+          <div className=''>
+             <span className={classNames.categoryContainerText}>RATING</span>
+           <div className={classNames.maxContainer}>
+             <MapContainer/>
+           </div>
+          </div>
+
+          <div className='ml-0 lg:ml-40'>
+            <span className={classNames.categoryContainerText}>LEVEL</span>
+            <div className={classNames.levelContainer}>
+            <LevelFilter/>
+            </div>
+          </div>  
+        </div>
     </div>
   );
 }
