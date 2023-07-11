@@ -8,6 +8,10 @@ export default function Achievements () {
             <div>
             <FaTrophy />
             </div>
+
+            <div>
+                <h2>Commited</h2>
+            </div>
         </div>
     </div>
   )
