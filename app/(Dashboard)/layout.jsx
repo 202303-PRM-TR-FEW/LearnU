@@ -1,10 +1,12 @@
 "use client"
 import Aside from "../components/dashboard/Aside";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/userSlice";
 export const DarkModeContext = createContext();
 
 
@@ -12,6 +14,13 @@ export default function layout({ children }) {
     const [dark, setDark] = useState(true);
     const [open, setOpen] = useState(false);
     const { data: session, status } = useSession();
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (!session) return
+        if (session.user) {
+            dispatch(setUser(session.user.email))
+        }
+    }, [session])
 
     const asideHandler = () => {
         setOpen((prev) => !prev);
