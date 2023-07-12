@@ -1,5 +1,23 @@
 import Link from "next/link";
 import { AiOutlineDingding } from "react-icons/ai";
+import { useSession, signIn, signOut } from "next-auth/react"
+export function Component() {
+    const { data: session } = useSession()
+    if (session) {
+      return (
+        <>
+          Signed in as {session.user.email} <br />
+          <button onClick={() => signOut()}>Sign out</button>
+        </>
+      )
+    }
+    return (
+      <>
+        Not signed in <br />
+        <button onClick={() => signIn()}>Sign in</button>
+      </>
+    )
+  }
 export default function Home() {
     return (
         
@@ -14,7 +32,7 @@ export default function Home() {
                     </div>
                     <div className="space-y-5 ">
                         <div className="">
-                        <h1 className="text-bold animate-text text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-orange-500">Discover Your Passion</h1>
+                        <h1 className="text-bold animate-text text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-orange-500 to-purple-500">Discover Your Passion</h1>
                         <p className="text-sm text-stone-400"> Find out what topics you find interesting, learn a new skill & connect with people that are passionate about similar topics.</p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-5 justify-center sm:justify-start">
@@ -25,10 +43,8 @@ export default function Home() {
                             </Link>
                         </button>
                         </div>
-                           <div><button className="buttons  bg-fuchsia-600 rounded rounded-md text-stone-100 text-sm p-2 hover:bg-fuchsia-400 active:bg-fuchsia-600">
-                            <Link href="/login">
-                                LOGIN
-                            </Link>
+                           <div><button  onClick={() => signIn()} className="buttons  bg-fuchsia-600 rounded rounded-md text-stone-100 text-sm p-2 hover:bg-fuchsia-400 active:bg-fuchsia-600">
+                           LOG IN     
                         </button>
                         </div>
                     </div>
