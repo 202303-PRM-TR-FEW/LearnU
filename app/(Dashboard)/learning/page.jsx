@@ -11,6 +11,7 @@ import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/learning/CourseDescription'
 import CourseCard from '@/app/components/learning/CourseCard'
 import getCourses from "@/app/lib/getCourses"
+import Loading from '@/loading'
 
 
 const page = () => {
@@ -71,7 +72,7 @@ const page = () => {
   }
 
   return (
-    <div className={`${style.main} ${isDark ? dark.main : light.main}`}>
+     !courses ? <Loading /> : ( <div className={`${style.main} ${isDark ? dark.main : light.main}`}>
       <div className={style.left_section}>
         <div className='flex justify-between'>
           <h1 className='text-3xl'>My Learning</h1>
@@ -81,6 +82,7 @@ const page = () => {
           </div>
 
         </div>
+        
           <div className='space-y-5'>
             {courses.map(course => (
               <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img}  isDark={isDark} courseId={course.id}
@@ -97,7 +99,7 @@ const page = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </div>)
   )
 }
 
