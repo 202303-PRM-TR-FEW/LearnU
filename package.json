@@ -21,5 +21,8 @@
     "react-icons": "^4.10.1",
     "react-toastify": "^9.1.3",
     "tailwindcss": "3.3.2"
+  },
+  "devDependencies": {
+    "daisyui": "^3.2.1"
   }
 }
