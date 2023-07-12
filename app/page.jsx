@@ -1,3 +1,4 @@
+"Use Client"
 import Link from "next/link";
 import { AiOutlineDingding } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react"
