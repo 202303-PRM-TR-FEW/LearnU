@@ -22,7 +22,7 @@ export function Component() {
 export default function Home() {
     return (
         <>
-        <div className="h-screen container flex p-10">
+        <div className="h-screen container mx-auto flex p-10">
             <div className="sm:grid sm:grid-cols-2 flex flex-wrap justify-center items-center bg-stone-100 rounded-3xl text-stone-600 shadow-xl" >
             <div className="sm:w-screen-1/2 flex flex-col justify-center items-center">
                 <div className="w-1/2 space-y-5"> 
