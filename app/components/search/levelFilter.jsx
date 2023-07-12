@@ -20,7 +20,7 @@ function LevelFilter () {
     return(
         <div className="md:flex md:flex-wrap grid grid-cols-2 gap-4">
       {skillLevels.map(level => (
-        <div className="flex items-center mr-4 mb-2" key={level}>
+        <div className="font-semibold text-slate-700 dark:text-white undefined flex items-center mr-4 mb-2" key={level}>
           <input
             type="checkbox"
             id={level}
@@ -30,7 +30,7 @@ function LevelFilter () {
             checked={checkedLevels.includes(level)}
             onChange={event => handleCheckboxChange(event, level)}
           />
-          <div className="bg-white border-2 rounded-lg border h-7 w-7 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+          <div className=" border-2 rounded-lg border h-7 w-7 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
             <svg className={`fill-current ${checkedLevels.includes(level) ? 'block' : 'hidden'} w-3 h-3 text-blue-600 pointer-events-none`} version="1.1" viewBox="0 0 17 12" xmlns="http://www.w3.org/2000/svg">
               <g fill="none" fillRule="evenodd">
                 <g transform="translate(-9 -11)" fill="#1F73F1" fillRule="nonzero">

@@ -88,7 +88,7 @@ const page = () => {
               <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img}  isDark={isDark} courseId={course.id}
               setCourseId={setCourseId} />
             ))}
-          </div> 
+          </div>
       </div>
       <div className={`${style.right_section} ${isDark? dark.right_section : light.right_section}`}>
         <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
