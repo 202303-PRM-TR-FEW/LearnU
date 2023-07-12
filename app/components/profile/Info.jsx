@@ -29,14 +29,14 @@ const Info = ( { user }) => {
             <div>
                 <h1 className='text-2xl font-bold'>{user.name}</h1>
                 <div className='flex  items-center'>
-                    <GrLocationPin className='w-4 h-4' />
+                    <GrLocationPin className='w-4 h-4 dark:text-stone-200' />
                     <p className='text-xs'>{userStatic.location}</p>
                 </div>    
             </div>
       
            
 
-           <div className={`numbers-container flex flex-row justify-center items-center text-xs space-x-2 p-3 ${dark.numbersContainer}`}
+           <div className={`numbers-container flex flex-row justify-center items-center text-xs space-x-2 p-3 bg-gray-100 rounded-xl border-4 border-gray-200 dark:bg-gray-700`}
 >
                 <div className='text-center'>
                     <p className='font-bold text-base'>{userStatic.profileInfo.courses}</p>

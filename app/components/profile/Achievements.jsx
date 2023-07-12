@@ -9,7 +9,7 @@ export default function Achievements () {
         <h2 className='font-semibold text-lg'>Achievements</h2>
 
         <div className='card w-full rounded-xl grid grid-cols-4
-        shadow-md bg-gray-100 shadow-gray-200 dark:bg-gray-300 dark:shadow-none ' >
+        shadow-md bg-gray-100 shadow-gray-200 dark:bg-gray-700 dark:shadow-none ' >
             
             <div className='flex justify-center items-center bg-orange-200 m-2 rounded-xl'>
             <PiClockCountdownLight className='text-orange-400 font-bold w-6 h-6' />
@@ -29,7 +29,7 @@ export default function Achievements () {
         </div>
        
         <div className='card w-full rounded-xl grid grid-cols-4
-        shadow-md bg-gray-100 shadow-gray-200 dark:bg-gray-300 dark:shadow-none ' >
+        shadow-md bg-gray-100 shadow-gray-200 dark:bg-gray-700 dark:shadow-none ' >
             
             <div className='flex justify-center items-center bg-lime-100 m-2 rounded-xl'>
             <FaTrophy className='text-lime-500 w-5 h-5' />
