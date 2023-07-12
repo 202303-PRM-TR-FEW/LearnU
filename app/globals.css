@@ -21,6 +21,11 @@
   
 }
 
+.card {
+  width: 200px;
+  height: 150px;
+}
+
 
 
 @layer base {
