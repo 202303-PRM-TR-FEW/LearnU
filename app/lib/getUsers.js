@@ -1,4 +1,4 @@
-export default async function getUser() {
+export default async function getUsers() {
   const res = await fetch(
     "https://learnu-daf0b-default-rtdb.firebaseio.com/users.json"
   );

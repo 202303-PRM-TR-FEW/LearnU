@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/store/userSlice";
 import { fetchUser, sendUser } from "@/store/user-actions";
+
 export const DarkModeContext = createContext();
 
 
@@ -18,12 +19,11 @@ export default function layout({ children }) {
     const userData = useSelector((state) => state.user)
     const dispatch = useDispatch()
     useEffect(() => {
-        if (!session) return
-        if (session.user) {
-            dispatch(setUser(session.user.email))
+        if (session?.user.email) {
             dispatch(fetchUser(session.user.email))
+            dispatch(setUser(session.user.email))
         }
-    }, [session])
+    }, [session?.user.email])
 
     // useEffect(() => {
     //     if (!session) return

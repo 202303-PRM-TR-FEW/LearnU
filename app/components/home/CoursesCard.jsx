@@ -9,7 +9,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     const dispatch = useDispatch();
 
     const handleSave = () => {
-        dispatch(setSavedCourses(id))
+        dispatch(setSavedCourses({ id }))
     }
     return (
         <div className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>

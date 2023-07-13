@@ -1,21 +1,18 @@
-import getUser from "@/app/lib/getUser";
+import getUser from "@/app/lib/getUsers";
 import { replaceUser } from "./userSlice";
-import addUser from "@/app/lib/addUser";
+import addUserData from "@/app/lib/addUserData";
 
 export const fetchUser = (email) => {
   return async (dispatch) => {
-    const fetchRequest = async () => {
-      const data = await getUser();
-      return data;
-    };
     try {
-      const users = await fetchRequest();
+      const users = await getUser();
       console.log("users", users);
+      const user = users.find((user) => user.email === email);
+      console.log("user", user);
       dispatch(
         replaceUser({
-          email: users.email || "",
-          savedCourses: users.savedCourses || [],
-          myLearning: users.myLearning || [],
+          savedCourses: user.savedCourses || [],
+          myCourses: user.myCourses || [],
         })
       );
     } catch (error) {
@@ -23,16 +20,10 @@ export const fetchUser = (email) => {
     }
   };
 };
-export const sendUser = (user) => {
+export const sendUser = (userData) => {
   return async (dispatch) => {
-    const sendRequest = async () => {
-      const res = await addUser(user);
-      if (!res.ok) {
-        throw new Error("Something went wrong!");
-      }
-    };
     try {
-      sendRequest();
+      addUserData(userData);
     } catch (error) {
       console.log(error);
     }

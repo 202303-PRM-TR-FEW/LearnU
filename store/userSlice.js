@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   email: "",
   savedCourses: [],
-  myLearning: [],
+  myCourses: [],
   changed: false,
 };
 
@@ -11,6 +11,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    replaceUser: (state, action) => {
+      state.savedCourses = action.payload.savedCourses;
+      state.myCourses = action.payload.myCourses;
+    },
     setUser: (state, action) => {
       if (state.email === "") {
         state.email = action.payload;
@@ -26,11 +30,11 @@ const userSlice = createSlice({
       }
     },
     setMyLearning: (state, action) => {
-      const existedMyLearning = state.myLearning.find(
+      const existedMyLearning = state.myCourses.find(
         (course) => course === action.payload
       );
       if (!existedMyLearning) {
-        state.myLearning.push(action.payload);
+        state.myCourses.push(action.payload);
         state.changed = true;
       }
     },
@@ -42,5 +46,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setSavedCourses, setMyLearning } = userSlice.actions;
+export const { setUser, setSavedCourses, setMyLearning, replaceUser } =
+  userSlice.actions;
 export default userSlice.reducer;
