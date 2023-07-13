@@ -15,7 +15,7 @@ export default async function page() {
             <Title title="Featured Courses" />
             <div className="grid gap-2 mb-12 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
                 {courses.map((course) => (
-                    <CoursesCard key={course.id} title={course.courseName} img={course.img} mins={course.duration.mins} hours={course.duration.hours} rating={course.rating} price={course.price} trainer={course.trainerName} />
+                    <CoursesCard key={course.id} id={course.id} title={course.courseName} img={course.img} mins={course.duration.mins} hours={course.duration.hours} rating={course.rating} price={course.price} trainer={course.trainerName} />
                 ))}
             </div>
             <Title title="Categories" />

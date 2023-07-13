@@ -27,7 +27,7 @@ export default function Home() {
                                             </Link>
                                         </button>
                                     </div>
-                                    <div><button onClick={() => signIn({ callbackUrl: "/home" })} className="p-2 text-sm rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
+                                    <div><button onClick={() => signIn(undefined, { callbackUrl: "/home" })} className="p-2 text-sm rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
                                         LOG IN
                                     </button>
                                     </div>

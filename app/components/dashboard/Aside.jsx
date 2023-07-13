@@ -1,12 +1,12 @@
 import { BsBookmarkFill, BsPlayCircleFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { FaUserCircle, FaHome } from "react-icons/fa";
+import { AiOutlineLogout } from "react-icons/ai";
 import Link from "next/link";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Aside({ modeHandler, asideHandler }) {
-
-    // const { logout } = useAuth0();
+    const { data: session } = useSession()
     return (
         <aside className="w-60 -translate-x-48 fixed transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#1E293B] ">
             <div className="max-toolbar translate-x-24 scale-x-0 w-full -right-6 transition transform ease-in duration-300 flex items-center justify-between border-4 border-white dark:border-[#0F172A] bg-[#1E293B] absolute top-2 rounded-full h-12">
@@ -122,14 +122,12 @@ export default function Aside({ modeHandler, asideHandler }) {
                         <div>Profile</div>
                     </div>
                 </Link>
-                {/* <div onClick={() =>
-                    logout({
-                        logoutParams: { returnTo: window.location.origin + "/admin" },
-                    })
+                {session?.user && (<div onClick={() =>
+                    signOut()
                 } className="cursor-pointer hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <AiOutlineLogout className="w-4 h-4" />
                     <div>Logout</div>
-                </div> */}
+                </div>)}
             </div>
             <div className="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
                 <Link href="/home">
@@ -157,13 +155,10 @@ export default function Aside({ modeHandler, asideHandler }) {
                         <FaUserCircle className="w-4 h-4" />
                     </div>
                 </Link>
-                {/* <div onClick={() =>
-                    logout({
-                        logoutParams: { returnTo: window.location.origin + "/admin" },
-                    })
-                } className="cursor-pointer hover:ml-4 justify-end pr-5 text-white hover:text-purple-500 dark:hover:text-blue-500 w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
+                {session?.user && (<div onClick={() => signOut()}
+                    className="cursor-pointer hover:ml-4 justify-end pr-5 text-white hover:text-purple-500 dark:hover:text-blue-500 w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
                     <AiOutlineLogout className="w-4 h-4" />
-                </div> */}
+                </div>)}
             </div>
         </aside>
     );

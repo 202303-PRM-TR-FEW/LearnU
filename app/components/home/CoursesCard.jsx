@@ -1,13 +1,21 @@
+"use client"
 import Image from 'next/image'
 import { GoClockFill } from 'react-icons/go'
 import { FaStar } from 'react-icons/fa'
 import { BsFillBookmarkFill } from 'react-icons/bs'
-export default function CoursesCard({ title, img, hours, mins, rating, price, trainer }) {
+import { setSavedCourses } from '@/store/userSlice'
+import { useDispatch } from 'react-redux'
+export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
+    const dispatch = useDispatch();
+
+    const handleSave = () => {
+        dispatch(setSavedCourses({ id }))
+    }
     return (
         <div className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>
             <div className='relative w-full'>
                 <Image src={img} alt={title} width={200} height={100} className="object-cover w-full h-32 mb-8 rounded-3xl" />
-                <span className='absolute p-3 text-white border-blue-600 rounded-lg group top-2 right-2 backdrop-blur-sm bg-white/5 hover:cursor-pointer hover:border'>
+                <span onClick={handleSave} className='absolute p-3 text-white border-blue-600 rounded-lg group top-2 right-2 backdrop-blur-sm bg-white/5 hover:cursor-pointer hover:border'>
                     <BsFillBookmarkFill size={17} className='group-hover:text-blue-600 ' />
                 </span>
             </div>
