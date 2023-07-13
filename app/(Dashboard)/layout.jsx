@@ -5,8 +5,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/store/userSlice";
+import { fetchUser, sendUser } from "@/store/user-actions";
 export const DarkModeContext = createContext();
 
 
@@ -14,13 +15,28 @@ export default function layout({ children }) {
     const [dark, setDark] = useState(true);
     const [open, setOpen] = useState(false);
     const { data: session, status } = useSession();
+    const userData = useSelector((state) => state.user)
     const dispatch = useDispatch()
     useEffect(() => {
         if (!session) return
         if (session.user) {
             dispatch(setUser(session.user.email))
+            dispatch(fetchUser(session.user.email))
         }
     }, [session])
+
+    // useEffect(() => {
+    //     if (!session) return
+    //     if (session.user) {
+    //     }
+    // }, [session])
+
+    useEffect(() => {
+        if (userData.changed) {
+            console.log("userData", userData);
+            dispatch(sendUser(userData))
+        }
+    }, [userData])
 
     const asideHandler = () => {
         setOpen((prev) => !prev);
