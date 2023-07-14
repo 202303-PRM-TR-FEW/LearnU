@@ -4,20 +4,36 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import { IoIosStats } from "react-icons/io"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux";
 
 
 
 import { DarkModeContext } from '../layout'
-import CourseDescription from '@/app/components/learning/CourseDescription'
-import CourseCard from '@/app/components/learning/CourseCard'
+import CourseDescription from '@/app/components/courses/CourseDescription'
+import CourseCard from '@/app/components/courses/CourseCard'
 import getCourses from "@/app/lib/getCourses"
 import Loading from '@/app/loading'
+import { BsXLg } from 'react-icons/bs'
 
 
 const page = () => {
   const [courses, setCourses] = useState([]);
   const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
+  const user = useSelector((state) => state.user);
+  
+console.log(courses)
+
+
+  
+  const savedCoursesId = user.savedCourses.map((obj) => obj.id)
+
+  const filteredCourses = courses.filter((course) =>
+  savedCoursesId.includes(course.id)
+);
+  console.log(filteredCourses)
+
+
 
 
   useEffect(() => {
@@ -72,7 +88,19 @@ const page = () => {
   }
 
   return (
-    !courses ? <Loading /> : (<div className={`${style.main} ${isDark ? dark.main : light.main}`}>
+
+    (filteredCourses.length === 0) ? (
+      <div className='flex justify-center items-center w-full h-full'>
+        <Link href="/home">
+        <button className='bg-purple-700 rounded-lg p-5' >
+          Please add courses..
+        </button>
+        </Link>
+      </div>
+    )
+    : 
+    
+    (<div className={`${style.main} ${isDark ? dark.main : light.main}`}>
       <div className={style.left_section}>
         <div className='flex justify-between'>
           <h1 className='text-3xl'>My Learning</h1>
@@ -84,22 +112,23 @@ const page = () => {
         </div>
 
         <div className='space-y-5'>
-          {courses.map(course => (
+         {filteredCourses.map(course => (
             <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img} isDark={isDark} courseId={course.id}
               setCourseId={setCourseId} />
           ))}
-        </div>
-      </div>
-      <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
-        <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
-        <div className={style.buttonContainer}>
-          <button className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
-          <Link href="/#">
-            <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
-          </Link>
-        </div>
-      </div>
-    </div>)
+              </div>
+            </div>
+            <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
+              <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
+              <div className={style.buttonContainer}>
+                <button className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
+                <Link href="/#">
+                  <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
+                </Link>
+              </div>
+            </div>
+          </div>)
+          
   )
 }
 
