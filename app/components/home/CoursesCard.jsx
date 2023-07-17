@@ -1,16 +1,30 @@
 "use client"
 import Image from 'next/image'
+import { useState } from 'react'
 import { GoClockFill } from 'react-icons/go'
 import { FaStar } from 'react-icons/fa'
-import { BsFillBookmarkFill } from 'react-icons/bs'
-import { setSavedCourses } from '@/store/userSlice'
+import { BsFillBookmarkFill, BsCheck2   } from 'react-icons/bs'
+import { setSavedCourses, setMyLearning } from '@/store/userSlice'
 import { useDispatch } from 'react-redux'
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
+    const [buttonText, setButtonText] = useState(`$ ${price}`)
     const dispatch = useDispatch();
 
     const handleSave = () => {
         dispatch(setSavedCourses({ id }))
     }
+
+    const handleBuy = () => {
+        dispatch(setMyLearning({ id }))
+        setButtonText (<BsCheck2 />)
+    }
+    const handleButtonHover = () => {
+        setButtonText('Buy');
+      };
+    
+      const handleButtonLeave = () => {
+        setButtonText(`$ ${price}`);
+      };
     return (
         <div className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>
             <div className='relative w-full'>
@@ -28,7 +42,8 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
                 <div className='flex flex-wrap items-baseline justify-between'>
                     <p className='flex items-center gap-2'><GoClockFill className='text-gray-400' /> {hours}h {mins}m</p>
                     <p className='flex items-center gap-2'><FaStar className='text-yellow-400' /> {rating}/5</p>
-                    <p className='px-6 py-2 mt-2 text-center text-white bg-blue-600 rounded-full '>${price}</p>
+                    <button className='btn group px-6 py-2 mt-2 text-center text-white bg-blue-600 rounded-full hover: ' onClick={handleBuy} onMouseEnter={handleButtonHover}
+        onMouseLeave={handleButtonLeave} >{buttonText}</button>
                 </div>
             </div>
         </div>
