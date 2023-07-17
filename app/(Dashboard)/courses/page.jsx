@@ -26,7 +26,7 @@ console.log(courses)
 
 
   
-  const savedCoursesId = user.savedCourses.map((obj) => obj.id)
+  const savedCoursesId = user.myCourses.map((obj) => obj.id)
 
   const filteredCourses = courses.filter((course) =>
   savedCoursesId.includes(course.id)
