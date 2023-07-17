@@ -6,6 +6,8 @@ import { FaStar } from 'react-icons/fa'
 import { BsFillBookmarkFill, BsCheck2   } from 'react-icons/bs'
 import { setSavedCourses, setMyLearning } from '@/store/userSlice'
 import { useDispatch } from 'react-redux'
+
+
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
     const [buttonText, setButtonText] = useState(`$ ${price}`)
     const dispatch = useDispatch();
