@@ -12,8 +12,7 @@ import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/courses/CourseDescription'
 import CourseCard from '@/app/components/courses/CourseCard'
 import getCourses from "@/app/lib/getCourses"
-import Loading from '@/app/loading'
-import { BsXLg } from 'react-icons/bs'
+
 
 
 const page = () => {
@@ -22,16 +21,16 @@ const page = () => {
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const user = useSelector((state) => state.user);
   
-console.log(courses)
+// console.log(courses)
 
 
   
-  const savedCoursesId = user.savedCourses.map((obj) => obj.id)
+  const savedCoursesId = user.myCourses.map((obj) => obj.id)
 
   const filteredCourses = courses.filter((course) =>
   savedCoursesId.includes(course.id)
 );
-  console.log(filteredCourses)
+  // console.log(filteredCourses)
 
 
 

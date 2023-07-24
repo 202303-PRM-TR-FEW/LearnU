@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import getUsers from "./getUsers";
+
 export default async function addUserData(userData) {
   const users = await getUsers();
   let userIndex = users.findIndex((user) => user.email === userData.email);

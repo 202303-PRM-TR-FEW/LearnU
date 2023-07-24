@@ -1,7 +1,7 @@
 import {GrLocationPin} from 'react-icons/gr'
 
-const Info = ( { user, userCourseNumber }) => {
-    console.log(user)
+const Info = ( { user, userCourseNumber, savedCoursesNumber }) => {
+    // console.log(user)
     const userStatic = {
 
         location: "ANKARA",
@@ -42,8 +42,8 @@ const Info = ( { user, userCourseNumber }) => {
                     <p>MY COURSES</p>
                 </div>
                 <div className='text-center'>
-                    <p className='font-bold text-base'>{userStatic.profileInfo.followers}</p>
-                    <p>FOLLOWERS</p>
+                    <p className='font-bold text-base'>{savedCoursesNumber}</p>
+                    <p>SAVED COURSES</p>
                 </div>
                 <div className='text-center'>
                     <p className='font-bold text-base'>{userStatic.profileInfo.following}</p>
