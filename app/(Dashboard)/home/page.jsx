@@ -1,5 +1,5 @@
-import CoursesCard from "@/app/components/home/CoursesCard";
 import getCourses from "@/app/lib/getCourses";
+import CoursesCard from "@/app/components/home/CoursesCard";
 import Title from "@/app/components/UI/Title";
 import CategoryCard from "@/app/components/home/CategoryCard";
 import { TbWorld } from "react-icons/tb";

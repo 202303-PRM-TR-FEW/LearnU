@@ -46,7 +46,7 @@ const userSlice = createSlice({
       state.changed = true;
     },
     removeMyLearning: (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       state.myCourses = state.myCourses.filter(
         (course) => course.id !== action.payload
       );
@@ -55,13 +55,13 @@ const userSlice = createSlice({
   },
 });
 
-
 export const {
   setUser,
   setSavedCourses,
   setMyLearning,
   replaceUser,
   removeSavedCourse,
+  removeMyLearning,
 } = userSlice.actions;
 
 export default userSlice.reducer;

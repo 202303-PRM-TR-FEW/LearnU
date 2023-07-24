@@ -1,6 +1,5 @@
 "use client"
 import Image from 'next/image'
-
 import { GoClockFill, GoBookmarkSlashFill } from 'react-icons/go'
 import { FaStar } from 'react-icons/fa'
 import { BsFillBookmarkFill } from 'react-icons/bs'
@@ -13,7 +12,6 @@ const stripePromise = loadStripe(
 );
 
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
-    const [buttonText, setButtonText] = useState(`$ ${price}`)
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
     const found = savedCourses.find(course => course.id === id)
