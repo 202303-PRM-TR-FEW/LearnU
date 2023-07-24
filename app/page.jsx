@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AiOutlineDingding } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react"
 export default function Home() {
+    const { data: session } = useSession()
     return (
         <>
             <div className="container flex h-screen p-10 mx-auto">
@@ -27,10 +28,11 @@ export default function Home() {
                                             </Link>
                                         </button>
                                     </div>
-                                    <div><button onClick={() => signIn(undefined, { callbackUrl: "/home" })} className="p-2 text-sm rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
+                                    {!session?.user && (<div><button onClick={() => signIn(undefined, { callbackUrl: "/home" })} className="p-2 text-sm rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
                                         LOG IN
                                     </button>
                                     </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

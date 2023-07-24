@@ -18,11 +18,12 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       if (state.email === "") {
         state.email = action.payload;
+        state.changed = true;
       }
     },
     setSavedCourses: (state, action) => {
       const existedCourse = state.savedCourses.find(
-        (course) => course === action.payload
+        (course) => course.id === action.payload.id
       );
       if (!existedCourse) {
         state.savedCourses.push(action.payload);
@@ -31,7 +32,7 @@ const userSlice = createSlice({
     },
     setMyLearning: (state, action) => {
       const existedMyLearning = state.myCourses.find(
-        (course) => course === action.payload
+        (course) => course.id === action.payload.id
       );
       if (!existedMyLearning) {
         state.myCourses.push(action.payload);
@@ -40,8 +41,9 @@ const userSlice = createSlice({
     },
     removeSavedCourse: (state, action) => {
       state.savedCourses = state.savedCourses.filter(
-        (course) => course.id !== action.payload
+        (course) => course.id !== action.payload.id
       );
+      state.changed = true;
     },
     removeMyLearning: (state, action) => {
       console.log(action.payload)
@@ -53,6 +55,13 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setSavedCourses, setMyLearning, replaceUser, removeMyLearning } =
-  userSlice.actions;
+
+export const {
+  setUser,
+  setSavedCourses,
+  setMyLearning,
+  replaceUser,
+  removeSavedCourse,
+} = userSlice.actions;
+
 export default userSlice.reducer;
