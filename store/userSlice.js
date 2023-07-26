@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  recommendedData: null,
   email: "",
   savedCourses: [],
   myCourses: [],
@@ -45,6 +46,9 @@ const userSlice = createSlice({
       );
       state.changed = true;
     },
+    setRecommendedData: (state, action) => {
+      state.recommendedData = action.payload; 
+    },
   },
 });
 
@@ -54,5 +58,6 @@ export const {
   setMyLearning,
   replaceUser,
   removeSavedCourse,
+  setRecommendedData,
 } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,11 +1,11 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+// SearchForm.js
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import MapContainer from './RatingFilter';
 import LevelFilter from './levelFilter';
 import Recommanded from './recommadnded';
-import getCourses from '@/app/lib/getCourses';
+import { setRecommendedData } from '@/store/userSlice';
 
-// Define the object with class names
 const classNames = {
   maxContainer: 'my-10 container',
   buttonsContainer: 'md:flex md:flex-wrap grid grid-cols-2 gap-4 my-10',
@@ -19,20 +19,11 @@ const classNames = {
   levelContainer: 'my-10 container',
 };
 
-const SearchForm = () => {
+const SearchForm = ({ filterCourses }) => {
   const [checkedItems, setCheckedItems] = useState({});
-  const [courses, setCourses] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    async function fetchData() {
-      const fetchedCourses = await getCourses();
-      setCourses(fetchedCourses);
-    }
-
-    fetchData();
-  }, []);
+  const dispatch = useDispatch(); // Initialize the dispatch function from react-redux
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -47,8 +38,6 @@ const SearchForm = () => {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
-
-  
 
   const marketingTopics = [
     'Marketing Strategy',
@@ -103,14 +92,12 @@ const SearchForm = () => {
     </button>
   ));
 
- const filteredCourses = courses.filter((course) => {
-  const matchesCategory = selectedCategory === '' || course.category === selectedCategory;
-  const matchesSearch =
-    course.courseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    course.trainerName.toLowerCase().includes(searchQuery.toLowerCase());
-  return matchesCategory && matchesSearch;
-});
+  const filteredCourses = filterCourses(selectedCategory, searchQuery);
 
+  const handleSendData = (recommendedData) => {
+    // Dispatch the setRecommendedData action with the recommendedData as payload
+    dispatch(setRecommendedData(recommendedData));
+  };
 
   return (
     <div>
@@ -166,16 +153,21 @@ const SearchForm = () => {
       <span className={classNames.categoryContainerText}>RECOMMENDED</span>
       <div className="md:flex md:flex-wrap grid grid-cols-1">
         {filteredCourses.map((course) => (
-          <Recommanded
-            key={course.id}
-            img={course.img}
-            trainer={course.trainerName}
-            title={course.courseName}
-            mins={course.duration.mins}
-            hours={course.duration.hours}
-            rating={course.rating}
-            price={course.price}
-          />
+          <div key={course.id}>
+            <Recommanded
+              img={course.img}
+              trainer={course.trainerName}
+              title={course.courseName}
+              mins={course.duration.mins}
+              hours={course.duration.hours}
+              rating={course.rating}
+              price={course.price}
+            />
+            {/* Add the button to send data to Overview */}
+            <button onClick={() => handleSendData({
+              courseId: course.id
+            })}>Send Data to Overview</button>
+          </div>
         ))}
       </div>
     </div>
