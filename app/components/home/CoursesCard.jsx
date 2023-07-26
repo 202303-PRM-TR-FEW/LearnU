@@ -10,6 +10,7 @@ import axios from 'axios'
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
+
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
@@ -19,6 +20,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     const handleSave = () => {
         dispatch(setSavedCourses({ id }))
     }
+
 
     const handleRemove = () => {
         dispatch(removeSavedCourse({ id }))
@@ -43,6 +45,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     }
 
 
+
     return (
         <div className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>
             <div className='relative w-full'>
@@ -63,11 +66,13 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
                 <div className='flex flex-wrap items-baseline justify-between'>
                     <p className='flex items-center gap-2'><GoClockFill className='text-gray-400' /> {hours}h {mins}m</p>
                     <p className='flex items-center gap-2'><FaStar className='text-yellow-400' /> {rating}/5</p>
+
                     <form onSubmit={handleBuy} className='flex group'>
                         <button className='hidden px-6 py-2 mt-2 text-center text-white bg-blue-600 rounded-full group-hover:inline-block'>
                             Buy</button>
                         <span className="px-6 py-2 mt-2 text-center text-white bg-blue-600 rounded-full cursor-pointer group-hover:hidden">${price}</span>
                     </form>
+
                 </div>
             </div>
         </div>

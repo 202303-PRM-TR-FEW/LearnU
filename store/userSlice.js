@@ -49,6 +49,13 @@ const userSlice = createSlice({
     setRecommendedData: (state, action) => {
       state.recommendedData = action.payload; 
     },
+    removeMyLearning: (state, action) => {
+      console.log(action.payload);
+      state.myCourses = state.myCourses.filter(
+        (course) => course.id !== action.payload
+      );
+      state.changed = true;
+    },
   },
 });
 
@@ -59,5 +66,7 @@ export const {
   replaceUser,
   removeSavedCourse,
   setRecommendedData,
+  removeMyLearning,
 } = userSlice.actions;
+
 export default userSlice.reducer;

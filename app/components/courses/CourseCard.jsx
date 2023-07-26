@@ -1,14 +1,27 @@
 "use client"
-import React from 'react'
-import {createContext, useState} from "react"
+import {RxCross2 } from "react-icons/rx"
+
+
+import {createContext} from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { removeMyLearning } from "@/store/userSlice"
+
+
 
 export const CourseIdContext = createContext();
 
 const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) => {
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
     
     const handleClick = () => {
         setCourseId(courseId);
-      };
+    };
+    const handleRemove = () => {
+        dispatch(removeMyLearning(courseId))
+        // console.log(user)
+        // console.log("func call")
+    }    
 
     const percentage = "45"
     const dark = {
@@ -16,8 +29,10 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
     }
 
   return (
-    <div className={` group shadow-sm text-xs sm:text-md font-normal w-full grid grid-cols-4 rounded-2xl  p-2 hover:border border-blue-300 hover:bg-blue-100 ${isDark? dark.bg_dark : "bg-white"} `} onClick={handleClick}>
-
+    <div className={`relative group shadow-sm text-xs sm:text-md font-normal w-full grid grid-cols-4 rounded-2xl  p-2 hover:border border-blue-300 hover:bg-blue-100 ${isDark? dark.bg_dark : "bg-white"} `} onClick={handleClick}>
+        <span className='absolute p-3 text-blue-200 border-blue-600 rounded-lg group top-2 right-2   hover:cursor-pointer hover:border'>
+                    <RxCross2 onClick={handleRemove} size={17} className='group-hover:text-blue-600 ' />
+                </span>
         <div className='left-section flex flex-grow items-center justify-center '>
             <div className='w-full h-full'>
                 <img className='rounded-2xl w-full h-full object-cover ' src={imgUrl} alt="" />   
@@ -26,7 +41,7 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
 
         <div className='right-section col-span-3 space-y-2 sm:space-y-5 p-4'>
             <div>
-                <h1 className='sm:text-lg font-bold'> {title} </h1>
+                <h1 className='sm:text-lg font-bold '> {title} </h1>
                 <p className='text-stone-400'> {trainer} </p>
             </div>
 
