@@ -39,6 +39,8 @@ const SearchForm = ({ filterCourses }) => {
     setSelectedCategory(category);
   };
 
+  
+
   const marketingTopics = [
     'Marketing Strategy',
     'UX design',
@@ -153,7 +155,16 @@ const SearchForm = ({ filterCourses }) => {
       <span className={classNames.categoryContainerText}>RECOMMENDED</span>
       <div className="md:flex md:flex-wrap grid grid-cols-1">
         {filteredCourses.map((course) => (
-          <div key={course.id}>
+          <div onClick={() => handleSendData({
+            courseId: course.id,
+            img:  course.img,
+            trainer: course.trainerName,
+            title: course.courseName,
+            mins: course.duration.mins,
+            hours: course.duration.hours,
+            rating: course.rating,
+            price: course.price
+          })} key={course.id}>
             <Recommanded
               img={course.img}
               trainer={course.trainerName}
@@ -163,10 +174,6 @@ const SearchForm = ({ filterCourses }) => {
               rating={course.rating}
               price={course.price}
             />
-            {/* Add the button to send data to Overview */}
-            <button onClick={() => handleSendData({
-              courseId: course.id
-            })}>Send Data to Overview</button>
           </div>
         ))}
       </div>

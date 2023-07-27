@@ -1,12 +1,10 @@
 import React from 'react';
-
+import Link from 'next/link';
 export default function Recommanded({ img, trainer, title, courseId }) {
-
-
   return (
-    <div className='m-4' id={courseId}>
-
-          <div className='card bg-base-100 shadow-xl image-full'>
+    <Link href="./overview">
+    <div  className='m-4' id={courseId}>
+      <div className='card bg-base-100 shadow-xl image-full'>
       <figure><img src={img}  alt="Shoes"/></figure>
       <div class="card-body">
         <h2 class="card-title">{trainer}</h2>
@@ -14,5 +12,6 @@ export default function Recommanded({ img, trainer, title, courseId }) {
       </div>
       </div>
     </div>
+    </Link>
   );
 }

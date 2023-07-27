@@ -16,6 +16,7 @@ function Page() {
     async function fetchData() {
       try {
         const fetchedCourses = await getCourses();
+        
         setCoursesData(fetchedCourses);
       } catch (error) {
         console.error("Error fetching courses data:", error);
@@ -24,6 +25,7 @@ function Page() {
 
     fetchData();
   }, []);
+  
 
   const filterCourses = (selectedCategory, searchQuery) => {
     return coursesData.filter((course) => {
