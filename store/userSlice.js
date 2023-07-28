@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  recommendedData: null,
   email: "",
   savedCourses: [],
   myCourses: [],
@@ -45,6 +46,9 @@ const userSlice = createSlice({
       );
       state.changed = true;
     },
+    setRecommendedData: (state, action) => {
+      state.recommendedData = action.payload; 
+    },
     removeMyLearning: (state, action) => {
       console.log(action.payload);
       state.myCourses = state.myCourses.filter(
@@ -61,6 +65,7 @@ export const {
   setMyLearning,
   replaceUser,
   removeSavedCourse,
+  setRecommendedData,
   removeMyLearning,
 } = userSlice.actions;
 

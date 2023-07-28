@@ -30,6 +30,34 @@
   height: 150px;
 }
 
+.preview {
+  background-color: #f5f5f5
+}
+
+.overview {
+  background-color: #fbfbfb
+}
+
+
+.preview::before,
+.preview::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.preview::before {
+  background: linear-gradient(to right, transparent, rgba(245, 245, 245, 0.8));
+}
+
+.preview::after {
+  background: linear-gradient(to bottom, transparent, rgba(245, 245, 245, 0.8));
+}
+
 
 
 @layer base {
