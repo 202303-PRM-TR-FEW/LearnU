@@ -1,9 +1,21 @@
+"use client"
 import Image from 'next/image'
+import { setRecommendedData } from '@/store/userSlice';
 import { BsFillBookmarkFill } from 'react-icons/bs'
+import { useDispatch} from 'react-redux'
+import Link from 'next/link';
 
-export default function LearningCard({ title, trainer, img, completed }) {
+export default function LearningCard({ id, title, trainer, img, completed }) {
+    const dispatch = useDispatch(); 
+    const handleSendData = (recommendedData) => {
+        dispatch(setRecommendedData(recommendedData));
+      };
+      
     return (
-        <div className='relative flex items-start justify-start p-2 rounded-3xl dark:bg-slate-800 dark:text-white bg-slate-100 text-slate-700'>
+        <Link href="./overview">
+        <div onClick={() => handleSendData({
+            courseId: id
+          })} className='relative flex items-start justify-start p-2 rounded-3xl dark:bg-slate-800 dark:text-white bg-slate-100 text-slate-700'>
             <Image src={img} alt={title} width={200} height={100} className="object-cover rounded-3xl" />
             <div className='flex flex-col justify-between w-full h-full py-2 pl-6 pr-3'>
                 <div className='flex flex-col items-start'>
@@ -22,5 +34,6 @@ export default function LearningCard({ title, trainer, img, completed }) {
                 </div>
             </div>
         </div>
+        </Link>
     )
 }
