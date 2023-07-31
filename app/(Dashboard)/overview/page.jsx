@@ -1,16 +1,30 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useContext } from 'react'
+import { DarkModeContext } from '../layout'
 import getCourses from '@/app/lib/getCourses';
-import { setMyLearning } from '@/store/userSlice';
+import CourseDescription from '@/app/components/overview/description';
+import CourseContent from '@/app/components/overview/content'
+import { loadStripe } from '@stripe/stripe-js';
+import { setMyLearning } from '@/store/userSlice'
+import axios from 'axios'
+const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 
 const Overview = () => {
   const [coursesData, setCoursesData] = useState([]);
   const  setyling = {
-    container: "ml-10  flex flex-col md:flex-row",
-    preview: "preview w-full md:w-1/2",
-    overview: "overview bg-gradient w-full md:w-1/2"
+    container: "preview flex flex-col sm:flex-row font-bold rounded-lg",
+    preview: " w-full w-full sm:w-screen-1/2 p-5 space-y-7  ",
+    overview: " contentOfOverview w-full sm:w-screen-1/2 h-max p-10 sm:m-5 rounded-lg",
+    button: 'bg-transparent hover:bg-blue-500 text-lg text-blue-700 font-semibold hover:text-white px-20 py-1 border border-blue-500 hover:border-transparent rounded-lg ml-4',
   }
+  const dispatch = useDispatch();
+
+  const mode = useContext(DarkModeContext)
+  const isDark = !mode
 
   useEffect(() => {
     async function fetchData() {
@@ -28,35 +42,48 @@ const Overview = () => {
   const user = useSelector((state) => state.user);
   const recommendedData = user.recommendedData;
   const recommendedCourseId = recommendedData?.courseId;
-
-
+  const savedCoursesId = user.myCourses
   const recommendedCourse = coursesData.find((course) => course.id === recommendedCourseId);
+  const isRecommendedCourseSaved = savedCoursesId.some((course) => course.id === recommendedCourseId);
+  console.log(savedCoursesId);
 
+
+  const handleBuy = async (e) => {
+    e.preventDefault();
+    const stripe = await stripePromise;
+    const response = await axios.post('http://localhost:3000/api/checkout_sessions', {
+        price,
+        title,
+        img,
+    });
+    if (response.status === 200) {
+        dispatch(setMyLearning({ id }))
+    }
+    console.log(response)
+    const { sessionId } = response.data;
+    const { error } = await stripe.redirectToCheckout({
+        sessionId,
+    });
+}
   return (
-    <div>
+    <div className='overv'>
       {recommendedCourse && (
         <div className={setyling.container}>
           <div className={setyling.preview}>
-          <div className="video-player-container flex justify-center ">
-              <video className='rounded-lg w-2/3  ' controls poster={recommendedCourse.img}>
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <h4>{recommendedCourse.courseName}</h4>
-            <div className='flex m-4'>
-            <img className='rounded-full w-10' src={recommendedCourse.img} alt={recommendedCourse.courseName} />
-            <p>{recommendedCourse.trainerName}</p>
-            </div>
-            <p>Duration: {recommendedCourse.duration.hours} hours {recommendedCourse.duration.mins} mins</p>
-            <p>Category: {recommendedCourse.category}</p>
-            <p>Rating: {recommendedCourse.rating}</p>
-            <div>
-              <h4></h4>
-              <span>Welcome to my course! Get ready to explore diverse topics and gain practical knowledge. All levels are welcome, from beginners to experts. Let's learn together and unlock your potential!</span>
-            </div>
+          <CourseDescription isDark={isDark}  selectedCourse={recommendedCourse} />
           </div>
           <div className={setyling.overview}>
-            <h1>overview</h1>
+            <h1 className='font-semibold pb-5 text-slate-700 dark:text-white undefined'>Course Overview</h1>
+            <CourseContent/>
+            <div className='flex items-center justify-center'>
+            {!isRecommendedCourseSaved && (
+              <form >
+              <button onSubmit={handleBuy} className={setyling.button}>
+              Buy Now
+            </button>
+            </form>
+            )}
+            </div>
           </div>
         </div>
       )}

@@ -23,7 +23,7 @@ const SearchForm = ({ filterCourses }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const dispatch = useDispatch(); // Initialize the dispatch function from react-redux
+  const dispatch = useDispatch(); 
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -97,7 +97,6 @@ const SearchForm = ({ filterCourses }) => {
   const filteredCourses = filterCourses(selectedCategory, searchQuery);
 
   const handleSendData = (recommendedData) => {
-    // Dispatch the setRecommendedData action with the recommendedData as payload
     dispatch(setRecommendedData(recommendedData));
   };
 
@@ -151,19 +150,12 @@ const SearchForm = ({ filterCourses }) => {
         </div>
       </div>
 
-      <hr className="w-11/12 mb-3" />
+      <hr className="w-11/12 mb-3"/>
       <span className={classNames.categoryContainerText}>RECOMMENDED</span>
       <div className="md:flex md:flex-wrap grid grid-cols-1">
         {filteredCourses.map((course) => (
           <div onClick={() => handleSendData({
-            courseId: course.id,
-            img:  course.img,
-            trainer: course.trainerName,
-            title: course.courseName,
-            mins: course.duration.mins,
-            hours: course.duration.hours,
-            rating: course.rating,
-            price: course.price
+            courseId: course.id
           })} key={course.id}>
             <Recommanded
               img={course.img}
