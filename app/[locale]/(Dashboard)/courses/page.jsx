@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 
 
 import { DarkModeContext } from '../layout'
-import CourseDescription from '@/app/components/courses/CourseDescription'
-import CourseCard from '@/app/components/courses/CourseCard'
-import getCourses from "@/app/lib/getCourses"
+import CourseDescription from '@/app/[locale]/components/courses/CourseDescription'
+import CourseCard from '@/app/[locale]/components/courses/CourseCard'
+import getCourses from "@/app/[locale]/lib/getCourses"
 
 
 
@@ -25,7 +25,7 @@ const page = () => {
 
 
   
-  const savedCoursesId = user.savedCourses.map((obj) => obj.id)
+  const savedCoursesId = user.myCourses.map((obj) => obj.id)
 
   const filteredCourses = courses.filter((course) =>
   savedCoursesId.includes(course.id)
@@ -102,7 +102,7 @@ const page = () => {
     (<div className={`${style.main} ${isDark ? dark.main : light.main}`}>
       <div className={style.left_section}>
         <div className='flex justify-between'>
-          <h1 className='text-3xl'>Saved Courses</h1>
+          <h1 className='text-3xl'>My Learning</h1>
           <div className='flex flex-row items-center space-x-1'>
             <IoIosStats className='text-stone-500' />
             <p className='font-normal text-stone-500'>Statistics</p>

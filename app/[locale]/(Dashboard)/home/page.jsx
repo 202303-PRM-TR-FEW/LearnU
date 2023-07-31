@@ -1,12 +1,12 @@
-import getCourses from "@/app/lib/getCourses";
-import CoursesCard from "@/app/components/home/CoursesCard";
-import Title from "@/app/components/UI/Title";
-import CategoryCard from "@/app/components/home/CategoryCard";
+import getCourses from "@/app/[locale]/lib/getCourses";
+import CoursesCard from "@/app/[locale]/components/home/CoursesCard";
+import Title from "@/app/[locale]/components/UI/Title";
+import CategoryCard from "@/app/[locale]/components/home/CategoryCard";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlineDesignServices } from "react-icons/md";
 import { SiMaterialdesignicons } from "react-icons/si";
 import { BsLightbulbFill } from "react-icons/bs";
-import LearningCard from "@/app/components/home/LearningCard";
+import LearningCard from "@/app/[locale]/components/home/LearningCard";
 export default async function page() {
     const courses = await getCourses();
     // console.log(courses);

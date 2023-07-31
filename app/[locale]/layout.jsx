@@ -3,6 +3,14 @@ import AuthProvider from './context/AuthProvider'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
+
+import {useLocale} from 'next-intl';
+import {notFound} from 'next/navigation';
+import {NextIntlClientProvider} from 'next-intl';
+
+
+
+ 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -53,15 +61,27 @@ export const metadata = {
 
   ]
 }
+export default async function RootLayout({ children,params }) {
+  const locale = useLocale();
 
-export default function RootLayout({ children }) {
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
-    <html lang="en">
+    <html lang={locale}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+
       <ProviderWrapper>
         <AuthProvider>
           <body className={inter.className}>{children}</body>
         </AuthProvider>
       </ProviderWrapper>
+
+      </NextIntlClientProvider>
     </html>
   )
 }

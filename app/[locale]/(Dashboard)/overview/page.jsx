@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useContext } from 'react'
 import { DarkModeContext } from '../layout'
-import getCourses from '@/app/lib/getCourses';
-import CourseDescription from '@/app/components/overview/description';
-import CourseContent from '@/app/components/overview/content'
+import getCourses from '@/app/[locale]/lib/getCourses';
+import CourseDescription from '@/app/[locale]/components/overview/description';
+import CourseContent from '@/app/[locale]/components/overview/content'
 import { loadStripe } from '@stripe/stripe-js';
 import { setMyLearning } from '@/store/userSlice'
 import axios from 'axios'
