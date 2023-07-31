@@ -3,9 +3,11 @@ import Image from 'next/image'
 import { GoClockFill, GoBookmarkSlashFill } from 'react-icons/go'
 import { FaStar } from 'react-icons/fa'
 import { BsFillBookmarkFill } from 'react-icons/bs'
-import { setSavedCourses, removeSavedCourse, setMyLearning } from '@/store/userSlice'
+import { setSavedCourses, removeSavedCourse, setMyLearning, setRecommendedData } from '@/store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js';
+import Link from 'next/link'
+
 import axios from 'axios'
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -15,6 +17,10 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
     const found = savedCourses.find(course => course.id === id)
+
+    const handleSendData = (recommendedData) => {
+        dispatch(setRecommendedData(recommendedData));
+      };
 
 
     const handleSave = () => {
@@ -47,9 +53,13 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
 
 
     return (
-        <div className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>
+        <div onClick={() => handleSendData({
+            courseId: id
+          })} className='relative flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 dark:text-slate-700'>
             <div className='relative w-full'>
+               <Link href="./overview">
                 <Image src={img} alt={title} width={200} height={100} className="object-cover w-full h-32 mb-8 rounded-3xl" />
+                </Link>
                 {!found && (<span onClick={handleSave} className='absolute p-3 text-white border-blue-600 rounded-lg group top-2 right-2 backdrop-blur-sm bg-white/5 hover:cursor-pointer hover:border'>
                     <BsFillBookmarkFill size={17} className='group-hover:text-blue-600 ' />
                 </span>)}
@@ -72,9 +82,9 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
                             Buy</button>
                         <span className="px-6 py-2 mt-2 text-center text-white bg-blue-600 rounded-full cursor-pointer group-hover:hidden">${price}</span>
                     </form>
-
                 </div>
             </div>
         </div>
+
     )
 }

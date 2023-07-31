@@ -32,7 +32,7 @@ export default async function page() {
             <Title title="My Learning" />
             <div className="grid gap-4 lg:grid-cols-2">
                 {courses.map((course) => (
-                    <LearningCard completed={70} key={course.id} title={course.courseName} img={course.img} trainer={course.trainerName} />
+                    <LearningCard completed={70} key={course.id} id={course.id} title={course.courseName} img={course.img} trainer={course.trainerName} />
                 ))}
             </div>
         </div>
