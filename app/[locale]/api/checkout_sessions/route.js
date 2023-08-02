@@ -23,8 +23,8 @@ export async function POST(request) {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/learning",
-      cancel_url: "http://localhost:3000/",
+      success_url: "https://learnu.vercel.app//learning",
+      cancel_url: "https://learnu.vercel.app//",
     });
     return NextResponse.json({ sessionId: session.id }, { status: 200 });
   } catch (err) {

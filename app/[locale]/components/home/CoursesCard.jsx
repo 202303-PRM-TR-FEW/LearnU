@@ -6,14 +6,17 @@ import { BsFillBookmarkFill } from 'react-icons/bs'
 import { setSavedCourses, removeSavedCourse, setMyLearning, setRecommendedData } from '@/store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js';
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 import axios from 'axios'
+import { toast } from 'react-toastify'
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
+    const {session} = useSession();
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
     const found = savedCourses.find(course => course.id === id)
@@ -24,6 +27,10 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
 
 
     const handleSave = () => {
+         if (!session) {
+            toast.error('Please login to buy this course')
+            return;
+        }
         dispatch(setSavedCourses({ id }))
     }
 
@@ -34,8 +41,14 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
 
     const handleBuy = async (e) => {
         e.preventDefault();
+
+        if (!session) {
+            toast.error('Please login to buy this course')
+            return;
+        }
+
         const stripe = await stripePromise;
-        const response = await axios.post('http://localhost:3000/api/checkout_sessions', {
+        const response = await axios.post('https://learnu.vercel.app/api/checkout_sessions', {
             price,
             title,
             img,
