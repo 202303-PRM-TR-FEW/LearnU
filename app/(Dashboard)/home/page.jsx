@@ -54,10 +54,10 @@ export default function page() {
                 {myLearning?.slice(0,2).map((course) => (
                     <LearningCard completed={70} key={course.id} id={course.id} title={course.courseName} img={course.img} trainer={course.trainerName} />
                 ))}
-                {myLearning?.length > 2 && (
-                    <Link href="/courses" className="flex items-center justify-center w-full h-32 p-4 text-2xl font-bold text-center text-white bg-slate-600 rounded-3xl">View All</Link>
-                )}
             </div>
+            {myLearning?.length > 2 && (
+                    <Link href="/courses" className="self-center w-64 px-4 py-2 mt-8 text-2xl text-center text-white bg-blue-600 rounded-lg ">View All</Link>
+                )}
         </div>
 
     )
