@@ -12,6 +12,7 @@ import axios from 'axios'
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
+import { Reveal } from '@/app/components/UI/Reveal';
 
 const Overview = () => {
   const [coursesData, setCoursesData] = useState([]);
@@ -67,11 +68,13 @@ const Overview = () => {
 }
   return (
     <div className='overv'>
+      <Reveal>
       {recommendedCourse && (
         <div className={setyling.container}>
           <div className={setyling.preview}>
           <CourseDescription isDark={isDark}  selectedCourse={recommendedCourse} />
           </div>
+          
           <div className={setyling.overview}>
             <h1 className='pb-5 font-semibold text-slate-700 dark:text-white undefined'>Course Overview</h1>
             <CourseContent/>
@@ -87,6 +90,7 @@ const Overview = () => {
           </div>
         </div>
       )}
+      </Reveal>
     </div>
   );
 };

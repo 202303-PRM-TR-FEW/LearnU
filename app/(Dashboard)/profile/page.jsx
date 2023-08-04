@@ -9,6 +9,7 @@ import  Statistics  from "@/app/components/profile/Statistics";
 import  Achievements  from "@/app/components/profile/Achievements";
 import getCourses from "@/app/lib/getCourses";
 import Friends from "@/app/components/profile/Friends";
+import { Reveal } from "@/app/components/UI/Reveal";
 
 
 
@@ -28,10 +29,18 @@ export default function page() {
         <>
         {session ?
             (<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4 text-stone-700 lg:m-10 dark:text-stone-300 ">
+                <Reveal>
                 <Info user={session.user} userCourseNumber={userCourseNumber} savedCoursesNumber={savedCoursesNumber} />
+                </Reveal>
+                <Reveal delay="0.6">
                 <Statistics />
+                </Reveal>
+                <Reveal delay="0.7">
                 <Achievements />
+                </Reveal>
+                <Reveal delay="0.8">
                 <Friends />
+                </Reveal>
             </div>) 
             
             : 
