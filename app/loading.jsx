@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import { PropagateLoader } from "react-spinners";
 
 export default function Loading({ className }) {

@@ -23,8 +23,8 @@ export async function POST(request) {
         },
       ],
       mode: "payment",
-      success_url: "https://learnu.vercel.app//learning",
-      cancel_url: "https://learnu.vercel.app//",
+      success_url: "https://learnu.vercel.app/courses",
+      cancel_url: "https://learnu.vercel.app/",
     });
     return NextResponse.json({ sessionId: session.id }, { status: 200 });
   } catch (err) {

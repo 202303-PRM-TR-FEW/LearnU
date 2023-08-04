@@ -1,6 +1,6 @@
-import getUser from "@/app/[locale]/lib/getUsers";
+import getUser from "@/app/lib/getUsers";
 import { replaceUser } from "./userSlice";
-import addUserData from "@/app/[locale]/lib/addUserData";
+import addUserData from "@/app/lib/addUserData";
 
 export const fetchUser = (email) => {
   return async (dispatch) => {

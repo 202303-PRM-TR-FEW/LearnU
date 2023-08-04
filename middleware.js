@@ -4,7 +4,8 @@
 
 // const publicPages = [,'/','/home', '/overview', '/search'];
 
-// // export { default } from "next-auth/middleware";
+export { default } from "next-auth/middleware";
+export const config = { matcher: ["/profile", "/courses","/saved"] }
 
 
 // import createMiddleware from 'next-intl/middleware';
@@ -25,49 +26,49 @@
 // };
 
 
-import { withAuth } from 'next-auth/middleware';
-import createIntlMiddleware from 'next-intl/middleware';
+// import { withAuth } from 'next-auth/middleware';
+// import createIntlMiddleware from 'next-intl/middleware';
 
-const locales = ['en', 'de'];
-const publicPages = ['/', '/login', '/home', '/overview', '/search'];
+// const locales = ['en', 'de'];
+// const publicPages = ['/', '/login', '/home', '/overview', '/search'];
 
-const intlMiddleware = createIntlMiddleware({
-  locales,
-  defaultLocale: 'en',
-  localePrefix: 'never',
-});
+// const intlMiddleware = createIntlMiddleware({
+//   locales,
+//   defaultLocale: 'en',
+//   localePrefix: 'never',
+// });
 
-const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the authorized callback has returned true
-  // and not for pages listed in pages.
-  function onSuccess(req) {
-    return intlMiddleware(req);
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null,
-    },
-    pages: {
-      signIn: '/login',
-    },
-  }
-);
+// const authMiddleware = withAuth(
+//   // Note that this callback is only invoked if
+//   // the authorized callback has returned true
+//   // and not for pages listed in pages.
+//   function onSuccess(req) {
+//     return intlMiddleware(req);
+//   },
+//   {
+//     callbacks: {
+//       authorized: ({ token }) => token != null,
+//     },
+//     pages: {
+//       signIn: '/login',
+//     },
+//   }
+// );
 
-export default function middleware(req) {
-  const publicPathnameRegex = new RegExp(
-    '^(/(' + locales.join('|') + '))?(' + publicPages.join('|') + ')?/?$',
-    'i'
-  );
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+// export default function middleware(req) {
+//   const publicPathnameRegex = new RegExp(
+//     '^(/(' + locales.join('|') + '))?(' + publicPages.join('|') + ')?/?$',
+//     'i'
+//   );
+//   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
-  if (isPublicPage) {
-    return intlMiddleware(req);
-  } else {
-    return authMiddleware(req);
-  }
-}
+//   if (isPublicPage) {
+//     return intlMiddleware(req);
+//   } else {
+//     return authMiddleware(req);
+//   }
+// }
 
-export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
-};
+// export const config = {
+//   matcher: ['/((?!api|_next|.*\\..*).*)'],
+// };

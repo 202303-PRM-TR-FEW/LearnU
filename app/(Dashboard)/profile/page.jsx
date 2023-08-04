@@ -4,11 +4,11 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useSelector } from "react-redux";
 
 
-import Info from "@/app/[locale]/components/profile/Info";
-import  Statistics  from "@/app/[locale]/components/profile/Statistics";
-import  Achievements  from "@/app/[locale]/components/profile/Achievements";
-import getCourses from "@/app/[locale]/lib/getCourses";
-import Friends from "@/app/[locale]/components/profile/Friends";
+import Info from "@/app/components/profile/Info";
+import  Statistics  from "@/app/components/profile/Statistics";
+import  Achievements  from "@/app/components/profile/Achievements";
+import getCourses from "@/app/lib/getCourses";
+import Friends from "@/app/components/profile/Friends";
 
 
 

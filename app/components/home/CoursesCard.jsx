@@ -16,7 +16,7 @@ const stripePromise = loadStripe(
 );
 
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
-    const {session} = useSession();
+    const {data: session} = useSession();
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
     const found = savedCourses.find(course => course.id === id)
@@ -27,7 +27,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
 
 
     const handleSave = () => {
-         if (!session) {
+         if (!session?.user) {
             toast.error('Please login to buy this course')
             return;
         }
@@ -42,7 +42,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     const handleBuy = async (e) => {
         e.preventDefault();
 
-        if (!session) {
+        if (!session?.user) {
             toast.error('Please login to buy this course')
             return;
         }
@@ -56,7 +56,6 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
         if (response.status === 200) {
             dispatch(setMyLearning({ id }))
         }
-        console.log(response)
         const { sessionId } = response.data;
         const { error } = await stripe.redirectToCheckout({
             sessionId,
@@ -81,7 +80,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
                 </span>)}
             </div>
             <div className='flex gap-2 p-1 left-4 justify-start items-center rounded-full absolute top-[50%] translate-y-[-50%] dark:bg-slate-950 dark:text-white bg-slate-50 text-slate-700'>
-                <Image src={img} alt={title} width={50} height={50} className="object-cover rounded-full w-9 h-9" />
+                <Image priority={true} placeholder={blur} src={img} alt={title} width={50} height={50} className="object-cover rounded-full w-9 h-9" />
                 <p className='pr-2'>{trainer}</p>
             </div>
             <div className='flex flex-col w-full p-2 text-slate-700 dark:text-white'>

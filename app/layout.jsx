@@ -4,9 +4,9 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 
 
-import {useLocale} from 'next-intl';
+// import {useLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
-import {NextIntlClientProvider} from 'next-intl';
+// import {NextIntlClientProvider} from 'next-intl';
 
 
 
@@ -62,18 +62,18 @@ export const metadata = {
   ]
 }
 export default async function RootLayout({ children,params }) {
-  const locale = useLocale();
+  // const locale = useLocale();
 
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+  // let messages;
+  // try {
+  //   messages = (await import(`../../messages/${locale}.json`)).default;
+  // } catch (error) {
+  //   notFound();
+  // }
 
   return (
-    <html lang={locale}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+    <html lang="en">
+      {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
 
       <ProviderWrapper>
         <AuthProvider>
@@ -81,7 +81,7 @@ export default async function RootLayout({ children,params }) {
         </AuthProvider>
       </ProviderWrapper>
 
-      </NextIntlClientProvider>
+      {/* </NextIntlClientProvider> */}
     </html>
   )
 }

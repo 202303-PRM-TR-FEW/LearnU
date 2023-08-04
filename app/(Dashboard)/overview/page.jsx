@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useContext } from 'react'
 import { DarkModeContext } from '../layout'
-import getCourses from '@/app/[locale]/lib/getCourses';
-import CourseDescription from '@/app/[locale]/components/overview/description';
-import CourseContent from '@/app/[locale]/components/overview/content'
+import getCourses from '@/app/lib/getCourses';
+import CourseDescription from '@/app/components/overview/description';
+import CourseContent from '@/app/components/overview/content'
 import { loadStripe } from '@stripe/stripe-js';
 import { setMyLearning } from '@/store/userSlice'
 import axios from 'axios'
@@ -51,7 +51,7 @@ const Overview = () => {
   const handleBuy = async (e) => {
     e.preventDefault();
     const stripe = await stripePromise;
-    const response = await axios.post('http://localhost:3000/api/checkout_sessions', {
+    const response = await axios.post('https://learnu.vercel.app/api/checkout_sessions', {
         price,
         title,
         img,
@@ -73,7 +73,7 @@ const Overview = () => {
           <CourseDescription isDark={isDark}  selectedCourse={recommendedCourse} />
           </div>
           <div className={setyling.overview}>
-            <h1 className='font-semibold pb-5 text-slate-700 dark:text-white undefined'>Course Overview</h1>
+            <h1 className='pb-5 font-semibold text-slate-700 dark:text-white undefined'>Course Overview</h1>
             <CourseContent/>
             <div className='flex items-center justify-center'>
             {!isRecommendedCourseSaved && (
