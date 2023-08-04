@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import SearchForm from "@/app/components/search/seachForm";
 import getCourses from "@/app/lib/getCourses";
+import { Reveal } from "@/app/components/UI/Reveal";
 
 function Page() {
   const styling = {
@@ -38,10 +39,12 @@ function Page() {
   };
 
   return (
+    <Reveal>
     <div className={styling.container}>
       <h1 className={styling.textHeader}>Find your favorites</h1>
       <SearchForm filterCourses={filterCourses} />
     </div>
+    </Reveal>
   );
 }
 

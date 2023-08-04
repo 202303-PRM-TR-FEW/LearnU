@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { IoIosStats } from "react-icons/io"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
+import { Reveal } from '@/app/components/UI/Reveal'
 
 
 
@@ -100,33 +101,40 @@ const page = () => {
     : 
     
     (<div className={`${style.main} ${isDark ? dark.main : light.main}`}>
-      <div className={style.left_section}>
+     <div className={style.left_section}>
+      <Reveal>
         <div className='flex justify-between'>
           <h1 className='text-3xl'>Saved Courses</h1>
           <div className='flex flex-row items-center space-x-1'>
             <IoIosStats className='text-stone-500' />
             <p className='font-normal text-stone-500'>Statistics</p>
           </div>
-
         </div>
-
+      </Reveal>  
+      
+      
+      <Reveal delay="0.6">
         <div className='space-y-5'>
          {filteredCourses.map(course => (
             <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img} isDark={isDark} courseId={course.id}
               setCourseId={setCourseId} />
-          ))}
-              </div>
-            </div>
-            <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
-              <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
-              <div className={style.buttonContainer}>
-                <button className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
-                <Link href="/#">
-                  <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
-                </Link>
-              </div>
-            </div>
-          </div>)
+              ))}
+        </div>
+      </Reveal>    
+      </div>
+      <Reveal delay="0.6" >
+      <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
+        <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
+        <div className={style.buttonContainer}>
+          <button className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
+          <Link href="/#">
+            <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
+          </Link>
+        </div>
+      </div>
+      </Reveal>  
+     
+    </div>)
           
   )
 }
