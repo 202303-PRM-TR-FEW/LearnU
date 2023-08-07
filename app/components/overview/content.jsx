@@ -4,10 +4,15 @@ import {FiCheck} from "react-icons/fi"
 
 
 
-function CourseContent () {
+function CourseContent ({isDark}) {
+
+    const styling = {
+        card : "mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg",
+        cardDark : "DarkCard mb-3 collapse collapse-arrow  rounded-lg shadow-lg",
+    }
     return (
         <div >
-          <div className=" mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg">
+          <div className={`${isDark? styling.cardDark : styling.card}`}>
             <input type="radio" name="my-accordion-2" checked="checked" /> 
             <div className="collapse-title font-semibold text-slate-700 dark:text-white undefined text-l font-medium">
             <div className="flex">
@@ -43,7 +48,7 @@ function CourseContent () {
           </div>
 
 
-          <div className="mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg">
+          <div className={`${isDark? styling.cardDark : styling.card}`}>
             <input type="radio" name="my-accordion-2" /> 
             <div className="collapse-title font-semibold text-slate-700 dark:text-white undefined text-l font-medium">
             <div className="flex">
@@ -77,7 +82,7 @@ function CourseContent () {
             </div>
             </div>
           </div>
-          <div className="mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg">
+          <div className={`${isDark? styling.cardDark : styling.card}`}>
             <input type="radio" name="my-accordion-2" /> 
             <div className="collapse-title font-semibold text-slate-700 dark:text-white undefined text-l font-medium">
             <div className="flex">
@@ -111,7 +116,7 @@ function CourseContent () {
             </div>
             </div>
           </div>
-          <div className="mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg">
+          <div className={`${isDark? styling.cardDark : styling.card}`}>
             <input type="radio" name="my-accordion-2" /> 
             <div className="collapse-title font-semibold text-slate-700 dark:text-white undefined text-l font-medium">
             <div className="flex">
@@ -145,7 +150,7 @@ function CourseContent () {
             </div>
             </div>
           </div>
-          <div className="mb-3 collapse collapse-arrow bg-zinc-200 rounded-lg shadow-lg">
+          <div className={`${isDark? styling.cardDark : styling.card}`}>
             <input type="radio" name="my-accordion-2" /> 
             <div className="collapse-title font-semibold text-slate-700 dark:text-white undefined text-l font-medium">
             <div className="flex">

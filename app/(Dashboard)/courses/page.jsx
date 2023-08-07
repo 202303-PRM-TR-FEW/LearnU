@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import { IoIosStats } from "react-icons/io"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch  } from "react-redux";
 
 
 
@@ -13,6 +13,7 @@ import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/courses/CourseDescription'
 import CourseCard from '@/app/components/courses/CourseCard'
 import getCourses from "@/app/lib/getCourses"
+import { setRecommendedData } from '@/store/userSlice';
 import { Reveal } from '@/app/components/UI/Reveal'
 
 
@@ -22,6 +23,8 @@ const page = () => {
   const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch(); 
+
   
 // console.log(courses)
 
@@ -33,6 +36,11 @@ const page = () => {
   savedCoursesId.includes(course.id)
 );
   // console.log(filteredCourses)
+
+
+  const handleSendData = (recommendedData) => {
+    dispatch(setRecommendedData(recommendedData));
+  };
 
 
 
@@ -126,7 +134,7 @@ const page = () => {
             <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
               <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
               <div className={style.buttonContainer}>
-                <button className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
+                <button onClick={() => handleSendData({courseId: selectedCourse.id })} className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
                 <Link href="/#">
                   <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
                 </Link>
