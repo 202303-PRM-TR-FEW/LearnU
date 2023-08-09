@@ -1,21 +1,22 @@
 "use client"
 import { Reveal } from "./components/UI/Reveal";
+import Loading from "./loading";
 
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { AiOutlineDingding } from "react-icons/ai";
 import {FaLanguage} from "react-icons/fa"
-import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from "next/link"
-import Loading from "./loading";
-// import {useTranslations} from 'next-intl';
-// import Link from "next-intl/link"
+import {getTranslator} from 'next-intl/server';
 
-export default function Home() {
-    // const t = useTranslations('Index');
+
+export default async function Home() {
+    const t = await getTranslator(locale, 'Index');
     const { user, isLoading } = useUser();
 
 if (isLoading) return <Loading />;
     return (
         <>  
+        <h1>{t('title')}</h1>
             <div className="container flex h-screen p-10 mx-auto">
                 <div className="flex flex-wrap items-center justify-center shadow-xl sm:grid sm:grid-cols-2 bg-stone-100 rounded-3xl text-stone-600" >
                     <div className="flex flex-col items-center justify-center sm:w-screen-1/2">

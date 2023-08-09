@@ -19,7 +19,7 @@ export const fetchUser = (email) => {
       console.log(error);
     }
   };
-};
+};  
 export const sendUser = (userData) => {
   return async (dispatch) => {
     try {

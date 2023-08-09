@@ -4,7 +4,7 @@ import { FaUserCircle, FaHome } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import Loading from "@/app/loading";
+import Loading from "@/app/[locale]/loading";
 
 export default function Aside({ modeHandler, asideHandler }) {
     const { user, error, isLoading } = useUser();

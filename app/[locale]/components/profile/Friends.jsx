@@ -1,4 +1,4 @@
-import Image from "next/image"
+
 
 const Friends = () => {
     return (

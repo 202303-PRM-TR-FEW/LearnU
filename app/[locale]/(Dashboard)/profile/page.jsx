@@ -4,12 +4,12 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useSelector } from "react-redux";
 
 
-import Info from "@/app/components/profile/Info";
-import  Statistics  from "@/app/components/profile/Statistics";
-import  Achievements  from "@/app/components/profile/Achievements";
+import Info from "@/app/[locale]/components/profile/Info";
+import  Statistics  from "@/app/[locale]/components/profile/Statistics";
+import  Achievements  from "@/app/[locale]/components/profile/Achievements";
 
-import Friends from "@/app/components/profile/Friends";
-import { Reveal } from "@/app/components/UI/Reveal";
+import Friends from "@/app/[locale]/components/profile/Friends";
+import { Reveal } from "@/app/[locale]/components/UI/Reveal";
 
 
 

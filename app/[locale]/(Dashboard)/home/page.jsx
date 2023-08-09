@@ -1,17 +1,17 @@
 "use client"
-import getCourses from "@/app/lib/getCourses";
-import CoursesCard from "@/app/components/home/CoursesCard";
-import Title from "@/app/components/UI/Title";
-import CategoryCard from "@/app/components/home/CategoryCard";
+import getCourses from "@/app/[locale]/lib/getCourses";
+import CoursesCard from "@/app/[locale]/components/home/CoursesCard";
+import Title from "@/app/[locale]/components/UI/Title";
+import CategoryCard from "@/app/[locale]/components/home/CategoryCard";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlineDesignServices,MdBusinessCenter,MdOutlineScreenshotMonitor } from "react-icons/md";
 import { BsLightbulbFill,BsGridFill } from "react-icons/bs";
 import {FaCamera} from "react-icons/fa";
-import LearningCard from "@/app/components/home/LearningCard";
+import LearningCard from "@/app/[locale]/components/home/LearningCard";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useEffect,useState } from "react";
-import { Reveal } from "@/app/components/UI/Reveal";
+import { Reveal } from "@/app/[locale]/components/UI/Reveal";
 
 export default function page() {
     const [courses, setCourses] = useState([]);

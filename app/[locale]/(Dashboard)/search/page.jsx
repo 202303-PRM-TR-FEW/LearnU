@@ -1,9 +1,9 @@
 
 "use client";
 import React, { useState, useEffect } from "react";
-import SearchForm from "@/app/components/search/seachForm";
-import getCourses from "@/app/lib/getCourses";
-import { Reveal } from "@/app/components/UI/Reveal";
+import SearchForm from "@/app/[locale]/components/search/seachForm";
+import getCourses from "@/app/[locale]/lib/getCourses";
+import { Reveal } from "@/app/[locale]/components/UI/Reveal";
 
 function Page() {
   const styling = {
