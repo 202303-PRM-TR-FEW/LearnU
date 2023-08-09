@@ -12,12 +12,12 @@ export default function Statistics () {
     
 
   return (
-    <div className='w-full h-full flex flex-col '>
-        <h1 className='mb-8 text-3xl font-semibold'>
+    <div className='w-full h-full flex flex-col lg:m-5 '>
+        <h1 className=' text-3xl font-semibold'>
             Total Statistics
         </h1>
 
-        <div className=' grid gap-2 mb-12 md:grid-cols-3 sm:grid-cols-2 '>
+        <div className=' grid gap-2 mb-12 md:grid-cols-3 sm:grid-cols-2 lg:m-5'>
             <div className='flex flex-col items-start justify-between p-2 bg-slate-100 rounded-3xl dark:bg-slate-800 space-y-5'>
                 <div className='icon bg-blue-200 w-full rounded-xl p-7 flex justify-center items-center '> 
                         <AiOutlineCheck className='text-blue-500' />

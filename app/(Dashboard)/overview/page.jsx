@@ -12,13 +12,16 @@ import axios from 'axios'
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
+import { Reveal } from '@/app/components/UI/Reveal';
 
 const Overview = () => {
   const [coursesData, setCoursesData] = useState([]);
   const  setyling = {
     container: "preview flex flex-col sm:flex-row font-bold rounded-lg",
-    preview: " w-full w-full sm:w-screen-1/2 p-5 space-y-7  ",
-    overview: " contentOfOverview w-full sm:w-screen-1/2 h-max p-10 sm:m-5 rounded-lg",
+    containerDark: " PreviewDark flex flex-col sm:flex-row font-bold rounded-lg",
+    preview: "w-full w-full sm:w-screen-1/2 p-5 space-y-7",
+    overview: "contentOfOverview w-full sm:w-screen-1/2 h-max p-10 sm:m-5 rounded-lg",
+    overviewDark: "OverviewDark w-full sm:w-screen-1/2 h-max p-10 sm:m-5 rounded-lg",
     button: 'bg-transparent hover:bg-blue-500 text-lg text-blue-700 font-semibold hover:text-white px-20 py-1 border border-blue-500 hover:border-transparent rounded-lg ml-4',
   }
   const dispatch = useDispatch();
@@ -45,7 +48,7 @@ const Overview = () => {
   const savedCoursesId = user.myCourses
   const recommendedCourse = coursesData.find((course) => course.id === recommendedCourseId);
   const isRecommendedCourseSaved = savedCoursesId.some((course) => course.id === recommendedCourseId);
-  console.log(savedCoursesId);
+  
 
 
   const handleBuy = async (e) => {
@@ -67,14 +70,16 @@ const Overview = () => {
 }
   return (
     <div className='overv'>
+      <Reveal>
       {recommendedCourse && (
-        <div className={setyling.container}>
+        <div className={`${isDark? setyling.containerDark : setyling.container}`}>
           <div className={setyling.preview}>
           <CourseDescription isDark={isDark}  selectedCourse={recommendedCourse} />
           </div>
-          <div className={setyling.overview}>
+          
+          <div className={`${isDark? setyling.overviewDark : setyling.overview}`}>
             <h1 className='pb-5 font-semibold text-slate-700 dark:text-white undefined'>Course Overview</h1>
-            <CourseContent/>
+            <CourseContent isDark={isDark}/>
             <div className='flex items-center justify-center'>
             {!isRecommendedCourseSaved && (
               <form >
@@ -87,6 +92,7 @@ const Overview = () => {
           </div>
         </div>
       )}
+      </Reveal>
     </div>
   );
 };

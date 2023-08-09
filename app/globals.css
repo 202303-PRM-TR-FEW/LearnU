@@ -26,16 +26,29 @@
 }
 
 .card {
-  width: 200px;
+  width: 230px;
   height: 150px;
 }
+
 
 .contentOfOverview {
   background-color: #fbfbfb ;
 }
 
+.OverviewDark {
+  background-color: #1e293b;
+}
+
 .preview {
   background-color: #f5f5f5;
+}
+
+.PreviewDark {
+  background-color: #253762;
+}
+
+.DarkCard {
+  background-color: #0f172a
 }
 
 
