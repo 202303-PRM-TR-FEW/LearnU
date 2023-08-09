@@ -50,7 +50,7 @@ export default function page() {
                 ))}
             </div>
             </Reveal>
-                <button className="self-center px-4 py-2 mt-2 mb-8 text-xl text-center text-white bg-blue-600 rounded-lg disabled:cursor-not-allowed disabled:bg-blue-950"
+                <button className="self-center px-4 py-2 mb-8 text-xl text-center text-white bg-blue-600 rounded-lg disabled:cursor-not-allowed disabled:bg-blue-950"
                 onClick={() => setCoursesViewer(prev => prev+4)} disabled={coursesViewer >= otherCourses.length}>View more</button>
             <Reveal delay="0.7">
             <Title title="Categories" />
