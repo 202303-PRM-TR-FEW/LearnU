@@ -2,6 +2,6 @@
 import { handleAuth, handleLogout,handleLogin } from '@auth0/nextjs-auth0';
 
 export default handleAuth({
-  logout: handleLogout({ returnTo: 'http://localhost:3000/home' }),
-    login: handleLogin({ returnTo: 'http://localhost:3000/home' }),
+  logout: handleLogout({ returnTo: 'https://learnu.vercel.app/home' }),
+    login: handleLogin({ returnTo: 'https://learnu.vercel.app/home' }),
 });
