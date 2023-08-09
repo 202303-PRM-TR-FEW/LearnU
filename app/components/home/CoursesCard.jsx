@@ -6,7 +6,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs'
 import { setSavedCourses, removeSavedCourse, setMyLearning, setRecommendedData } from '@/store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js';
-import { useSession } from 'next-auth/react'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import Link from 'next/link'
 
 import axios from 'axios'
@@ -16,7 +16,7 @@ const stripePromise = loadStripe(
 );
 
 export default function CoursesCard({ id, title, img, hours, mins, rating, price, trainer }) {
-    const {data: session} = useSession();
+    const { user } = useUser();
     const dispatch = useDispatch();
     const savedCourses = useSelector(state => state.user.savedCourses)
     const found = savedCourses.find(course => course.id === id)
@@ -27,7 +27,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
 
 
     const handleSave = () => {
-         if (!session?.user) {
+         if (!user) {
             toast.error('Please login to buy this course')
             return;
         }
@@ -42,7 +42,7 @@ export default function CoursesCard({ id, title, img, hours, mins, rating, price
     const handleBuy = async (e) => {
         e.preventDefault();
 
-        if (!session?.user) {
+        if (!user) {
             toast.error('Please login to buy this course')
             return;
         }

@@ -1,5 +1,5 @@
 import ProviderWrapper from '@/store/provider'
-import AuthProvider from './context/AuthProvider'
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -76,9 +76,9 @@ export default async function RootLayout({ children,params }) {
       {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
 
       <ProviderWrapper>
-        <AuthProvider>
+        <UserProvider>
           <body className={inter.className}>{children}</body>
-        </AuthProvider>
+        </UserProvider>
       </ProviderWrapper>
 
       {/* </NextIntlClientProvider> */}

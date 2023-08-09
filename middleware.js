@@ -1,11 +1,10 @@
+import { withMiddlewareAuthRequired } from '@auth0/nextjs-auth0/edge';
 
-// import {withAuth} from 'next-auth/middleware';
-// import {NextRequest} from 'next/server';
+export default withMiddlewareAuthRequired();
 
-// const publicPages = [,'/','/home', '/overview', '/search'];
-
-export { default } from "next-auth/middleware";
-export const config = { matcher: ["/profile", "/courses","/saved"] }
+export const config = {
+  matcher: ['/profile', '/courses',"/saved"]
+};
 
 
 // import createMiddleware from 'next-intl/middleware';

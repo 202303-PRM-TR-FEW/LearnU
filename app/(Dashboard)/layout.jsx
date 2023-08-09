@@ -1,13 +1,15 @@
 "use client"
 import Aside from "../components/dashboard/Aside";
 import { useState, createContext, useEffect } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/store/userSlice";
 import { fetchUser, sendUser } from "@/store/user-actions";
+import { usePathname } from "next/navigation";
+import Loading from "../loading";
 
 export const DarkModeContext = createContext();
 
@@ -15,21 +17,20 @@ export const DarkModeContext = createContext();
 export default function layout({ children }) {
     const [dark, setDark] = useState(true);
     const [open, setOpen] = useState(false);
-    const { data: session, status } = useSession();
+    const { user, error, isLoading } = useUser();
+    const pathname = usePathname();
+
+    const path = pathname.split("/")[1];
+
     const userData = useSelector((state) => state.user)
     const dispatch = useDispatch()
-    useEffect(() => {
-        if (session?.user.email) {
-            dispatch(fetchUser(session.user.email))
-            dispatch(setUser(session.user.email))
-        }
-    }, [session?.user.email])
 
-    // useEffect(() => {
-    //     if (!session) return
-    //     if (session.user) {
-    //     }
-    // }, [session])
+    useEffect(() => {
+        if (user?.email) {
+            dispatch(fetchUser(user.email))
+            dispatch(setUser(user.email))
+        }
+    }, [user?.email])
 
     useEffect(() => {
         if (userData.changed) {
@@ -86,37 +87,41 @@ export default function layout({ children }) {
             document.querySelector(".sun").classList.add("hidden");
         }
     };
+    if (isLoading) return <Loading />;
     return (
         <DarkModeContext.Provider value={dark}>
             <div className={`bg-white dark:bg-[#0F172A]`}>
                 <>
                     <div className="fixed w-full z-30 flex bg-white dark:bg-[#0F172A] p-2 items-center justify-center h-16 px-10">
-                        <div className="flex items-center justify-center flex-none h-full ml-12 duration-500 ease-in-out transform logo dark:text-white">
-                            Home
+                        <div className="flex items-center justify-center flex-none h-full ml-12 uppercase duration-500 ease-in-out transform text-slate-800 logo dark:text-white">
+                            {path}
                         </div>
                         <div className="flex items-center justify-center h-full grow"></div>
                         <div className="flex items-center justify-center flex-none h-full text-center">
-                            {session ? (
+                            {user ? (
                                 <div className="flex items-center px-3 space-x-3">
-                                    {session.user.image && (<div className="flex justify-center flex-none">
+                                    {user.picture && (<div className="flex justify-center flex-none">
                                         <div className="flex w-8 h-8 ">
-                                            <img
-                                                src={session.user.image}
+                                            <Image
+                                            width={36}
+                                            height={36}
+                                            priority={true}
+                                                placeholder={blur}
+                                                src={user.picture}
                                                 alt="profile"
                                                 className="object-cover rounded-full shadow"
                                             />
                                         </div>
                                     </div>)}
                                     <div
-                                        onClick={() => signOut()}
-                                        className="hidden text-sm text-black cursor-pointer md:block md:text-md dark:text-white"
+                                        className="hidden text-sm cursor-pointer text-slate-800 md:block md:text-md dark:text-white"
                                     >
-                                        {session.user.name}
+                                        {user.name}
                                     </div>
                                 </div>
-                            ) : (<button onClick={() => signIn()} className="px-8 py-3 text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-800">
+                            ) : (<a href="/api/auth/login" className="inline-block px-8 py-3 text-center text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-800">
                                 Login
-                            </button>)}
+                            </a>)}
                         </div>
 
                     </div>

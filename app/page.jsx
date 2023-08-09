@@ -2,16 +2,17 @@
 // import Link from "next/link";
 import { AiOutlineDingding } from "react-icons/ai";
 import {FaLanguage} from "react-icons/fa"
-import { useSession, signIn } from "next-auth/react"
+import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from "next/link"
+import Loading from "./loading";
 // import {useTranslations} from 'next-intl';
 // import Link from "next-intl/link"
 
 export default function Home() {
     // const t = useTranslations('Index');
+    const { user, isLoading } = useUser();
 
-    const { data: session } = useSession()
-
+if (isLoading) return <Loading />;
     return (
         <>  
             <div className="container flex h-screen p-10 mx-auto">
@@ -44,9 +45,10 @@ export default function Home() {
                                             </Link>
                                         </button>
                                     </div>
-                                    {!session?.user && (<div><button onClick={() => signIn(undefined, { callbackUrl: "/home" })} className="p-2 text-sm rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
+                                    {!user && (<div>
+                                        <a href="/api/auth/login" className="inline-block p-2 text-sm text-center rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
                                         SIGN IN
-                                    </button>
+                                    </a>
                                     </div>
                                     )}
                                 </div>
