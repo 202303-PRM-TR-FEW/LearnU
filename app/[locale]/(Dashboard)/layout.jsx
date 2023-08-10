@@ -1,5 +1,5 @@
 "use client"
-import Aside from "../components/dashboard/Aside";
+import Aside from "../../components/dashboard/Aside";
 import { useState, createContext, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { ToastContainer } from "react-toastify";
