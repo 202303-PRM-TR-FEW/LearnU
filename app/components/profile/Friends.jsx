@@ -1,10 +1,13 @@
 import Image from "next/image"
+import {useTranslations} from 'next-intl';
 
 const Friends = () => {
+    const t = useTranslations('profile');
+
     return (
         <div className="space-y-5 m-5">
             <div className="font-semibold text-3xl">
-                Friends
+            {t("friends")}
             </div>
             <div className="w-full bg-gray-100 shadow-gray-200 dark:bg-gray-700 dark:shadow-none rounded-lg p-5 lg:m-5 space-y-5 ">
                 <div className="flex justify-between items-center">
@@ -15,7 +18,7 @@ const Friends = () => {
                         <p>William Walker</p>
                     </div>
                     <div className="text-blue-600">
-                        PROFILE
+                    {t("profile")}
                     </div>
 
                 </div>
@@ -28,17 +31,17 @@ const Friends = () => {
                         <p>William Walker</p>
                     </div>
                     <div className="text-blue-600">
-                        PROFILE
+                    {t("profile")}
                     </div>
                 </div>
                 <hr />
                 <div className="text-blue-600" >
-                    VIEW ALL
+                {t("viewall")}
                 </div>
             </div>
             <div className="flex flex-col lg:flex-row lg:space-x-5 space-y-5 lg:space-y-0 items-center justify-center py-5">
-                <button className="w-max border font-bold py-1 px-5 lg:px-16 rounded-lg hover:translate-y-1 transition-all text-[#0F172A] hover:text-white bg-white-500 border-[#0F172A] hover:bg-[#253762]">Find Friends</button>
-                <button className="w-max border font-bold py-1 px-5 lg:px-16 rounded-lg hover:translate-y-1 transition-all hover:text-[#0F172A] text-white hover:bg-white border-[#0F172A] bg-[#253762]">Invite Friends</button>
+                <button className="w-max border font-bold py-1 px-5 lg:px-16 rounded-lg hover:translate-y-1 transition-all text-[#0F172A] hover:text-white bg-white-500 border-[#0F172A] hover:bg-[#253762]">{t("button1")}</button>
+                <button className="w-max border font-bold py-1 px-5 lg:px-16 rounded-lg hover:translate-y-1 transition-all hover:text-[#0F172A] text-white hover:bg-white border-[#0F172A] bg-[#253762]">{t("button2")}</button>
             </div>
         </div>
     )

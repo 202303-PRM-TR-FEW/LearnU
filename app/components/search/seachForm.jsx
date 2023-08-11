@@ -5,6 +5,7 @@ import MapContainer from './RatingFilter';
 import LevelFilter from './levelFilter';
 import Recommanded from './recommadnded';
 import { setRecommendedData } from '@/store/userSlice';
+import {useTranslations} from 'next-intl';
 
 const classNames = {
   maxContainer: 'my-10 container',
@@ -20,6 +21,8 @@ const classNames = {
 };
 
 const SearchForm = ({ filterCourses }) => {
+  const t = useTranslations('search');
+
   const [checkedItems, setCheckedItems] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,7 +45,7 @@ const SearchForm = ({ filterCourses }) => {
   
 
   const marketingTopics = [
-    'Marketing Strategy',
+    "Marketing",
     'UX design',
     'Excel',
     'Adobe Photoshop',
@@ -90,7 +93,7 @@ const SearchForm = ({ filterCourses }) => {
       className={classNames.SearchCatButtons}
       key={index}
       name={topic}>
-      {topic}
+      {t(`list.${index+1}`)}
     </button>
   ));
 
@@ -108,26 +111,26 @@ const SearchForm = ({ filterCourses }) => {
             type="text"
             id="simple-search"
             className={classNames.input}
-            placeholder="Search categories"
+            placeholder={t("placeholder")}
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             required
           />
           <button type="submit" className={classNames.button}>
-            <span>search</span>
+            <span>{t("search-button")}</span>
           </button>
         </form>
       </div>
 
       <hr className="w-11/12 mb-3" />
-      <span className={classNames.categoryContainerText}>TOP SEARCHES</span>
+      <span className={classNames.categoryContainerText}>{t("title2")}</span>
 
       <div className={classNames.maxContainer}>
         <div className={classNames.buttonsContainer}>{buttons}</div>
       </div>
 
       <hr className="w-11/12 mb-3" />
-      <span className={classNames.categoryContainerText}>CATEGORIES</span>
+      <span className={classNames.categoryContainerText}>{t("categories")}</span>
 
       <div className={classNames.checkContainer}>
         <div className={classNames.itemsResponsivnes}>{checkboxes}</div>
@@ -136,14 +139,14 @@ const SearchForm = ({ filterCourses }) => {
       <hr className="w-11/12 mb-3" />
       <div className="md:flex md:flex-wrap grid grid-cols-1">
         <div className="">
-          <span className={classNames.categoryContainerText}>RATING</span>
+          <span className={classNames.categoryContainerText}>{t("rating")}</span>
           <div className={classNames.maxContainer}>
             <MapContainer />
           </div>
         </div>
 
         <div className="ml-0 lg:ml-40">
-          <span className={classNames.categoryContainerText}>LEVEL</span>
+          <span className={classNames.categoryContainerText}>{t("level")}</span>
           <div className={classNames.levelContainer}>
             <LevelFilter />
           </div>
@@ -151,7 +154,7 @@ const SearchForm = ({ filterCourses }) => {
       </div>
 
       <hr className="w-11/12 mb-3"/>
-      <span className={classNames.categoryContainerText}>RECOMMENDED</span>
+      <span className={classNames.categoryContainerText}>{t("recomended")}</span>
       <div className="md:flex md:flex-wrap grid grid-cols-1">
         {filteredCourses.map((course) => (
           <div onClick={() => handleSendData({

@@ -5,11 +5,10 @@ import { useContext } from 'react'
 import { IoIosStats } from "react-icons/io"
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import {useTranslations} from 'next-intl';
+
 import { setRecommendedData } from '@/store/userSlice';
 import { Reveal } from '@/app/components/UI/Reveal';
-
-
-
 import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/courses/CourseDescription'
 import CourseCard from '@/app/components/courses/CourseCard'
@@ -18,6 +17,7 @@ import getCourses from "@/app/lib/getCourses"
 
 
 const page = () => {
+  const t = useTranslations("courses")
   const [courses, setCourses] = useState([]);
   const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
@@ -97,7 +97,7 @@ const page = () => {
       <div className='flex items-center justify-center w-full h-full'>
         <Link href="/home">
         <button className='p-5 bg-purple-700 rounded-lg' >
-          Please add courses..
+          {t("button1")}
         </button>
         </Link>
       </div>
@@ -108,7 +108,7 @@ const page = () => {
      <div className={style.left_section}>
       <Reveal>
         <div className='flex justify-between'>
-          <h1 className='text-3xl'>Saved Courses</h1>
+          <h1 className='text-3xl'>{t("savedh1")}</h1>
           <div className='flex flex-row items-center space-x-1'>
             <IoIosStats className='text-stone-500' />
             <p className='font-normal text-stone-500'>Statistics</p>
@@ -131,10 +131,10 @@ const page = () => {
         <CourseDescription isDark={isDark} selectedCourse={selectedCourse}/>
         <div className={style.buttonContainer}>
         <Link href="./overview">
-          <button onClick={() => handleSendData({courseId: selectedCourse.id })} className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
+          <button onClick={() => handleSendData({courseId: selectedCourse.id })} className={`${style.button} ${isDark ? dark.button : light.button}`}>{t("button2")}</button>
         </Link>
           <Link href="/#">
-            <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
+            <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>{t("button3")}</button>
           </Link>
         </div>
       </div>

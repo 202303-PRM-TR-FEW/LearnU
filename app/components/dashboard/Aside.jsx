@@ -1,12 +1,18 @@
 import { BsBookmarkFill, BsPlayCircleFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { FaUserCircle, FaHome } from "react-icons/fa";
+import { GrLanguage } from "react-icons/gr";
 import { AiOutlineLogout } from "react-icons/ai";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Loading from "@/app/[locale]/loading";
 
+import {useTranslations} from 'next-intl';
+
+
 export default function Aside({ modeHandler, asideHandler }) {
+        const t = useTranslations('aside');
+
     const { user, error, isLoading } = useUser();
     if (isLoading) return <Loading />;
     return (
@@ -97,36 +103,36 @@ export default function Aside({ modeHandler, asideHandler }) {
                 <Link href="/home">
                     <div className="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                         <FaHome className="w-4 h-4" />
-                        <div>Home</div>
+                        <div>{t("home")}</div>
                     </div>
                 </Link>
                 <Link href="/search">
                     <div className="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                         <ImSearch className="w-4 h-4" />
-                        <div>Search</div>
+                        <div>{t("search")}</div>
                     </div>
                 </Link>
                 <Link href="/courses" >
                     <div className="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                         <BsPlayCircleFill className="w-4 h-4" />
-                        <div>Courses</div>
+                        <div>{t("courses")}</div>
                     </div>
                 </Link>
                 <Link href="/saved" >
                     <div className="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                         <BsBookmarkFill className="w-4 h-4" />
-                        <div>Saved</div>
+                        <div>{t("saved")}</div>
                     </div>
                 </Link>
                 <Link href="/profile" >
                     <div className="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                         <FaUserCircle className="w-4 h-4" />
-                        <div>Profile</div>
+                        <div>{t("profile")}</div>
                     </div>
                 </Link>
                 {user && (<a href="/api/auth/logout"  className="text-center cursor-pointer hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <AiOutlineLogout className="w-4 h-4" />
-                    <div>Logout</div>
+                    <div>{t("logout")}</div>
                 </a>)}
             </div>
             <div className="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
