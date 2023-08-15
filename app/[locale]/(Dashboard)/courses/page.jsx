@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import { IoIosStats } from "react-icons/io"
 import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux";
-import { setRecommendedData } from '@/store/userSlice';
-import { Reveal } from '@/app/components/UI/Reveal';
+import { useSelector, useDispatch  } from "react-redux";
+import {useTranslations} from 'next-intl';
+
+
 
 
 
@@ -14,31 +15,29 @@ import { DarkModeContext } from '../layout'
 import CourseDescription from '@/app/components/courses/CourseDescription'
 import CourseCard from '@/app/components/courses/CourseCard'
 import getCourses from "@/app/lib/getCourses"
+import { setRecommendedData } from '@/store/userSlice';
+import { Reveal } from '@/app/components/UI/Reveal'
 
 
 
 const page = () => {
+  const t = useTranslations('courses');
+
   const [courses, setCourses] = useState([]);
   const [courseId, setCourseId] = useState('09cb9789-12c7-4c4a-9513-fa76146d0017')
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
-  const dispatch = useDispatch(); 
   const user = useSelector((state) => state.user);
-  
-// console.log(courses)
+  const dispatch = useDispatch(); 
 
-
-  
-  const savedCoursesId = user.savedCourses.map((obj) => obj.id)
+  const savedCoursesId = user.myCourses.map((obj) => obj.id)
 
   const filteredCourses = courses.filter((course) =>
   savedCoursesId.includes(course.id)
 );
-  // console.log(filteredCourses)
-
-
   const handleSendData = (recommendedData) => {
     dispatch(setRecommendedData(recommendedData));
   };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,8 +62,6 @@ const page = () => {
 
   const mode = useContext(DarkModeContext)
   const isDark = !mode
-
-
 
 
   const style = {
@@ -97,7 +94,7 @@ const page = () => {
       <div className='flex items-center justify-center w-full h-full'>
         <Link href="/home">
         <button className='p-5 bg-purple-700 rounded-lg' >
-          Please add courses..
+          {t("button1")}
         </button>
         </Link>
       </div>
@@ -105,42 +102,37 @@ const page = () => {
     : 
     
     (<div className={`${style.main} ${isDark ? dark.main : light.main}`}>
-     <div className={style.left_section}>
+      <div className={style.left_section}>
       <Reveal>
         <div className='flex justify-between'>
-          <h1 className='text-3xl'>Saved Courses</h1>
+          <h1 className='text-3xl'>{t("h1")}</h1>
           <div className='flex flex-row items-center space-x-1'>
             <IoIosStats className='text-stone-500' />
-            <p className='font-normal text-stone-500'>Statistics</p>
           </div>
         </div>
-      </Reveal>  
-      
-      
+      </Reveal>
+
       <Reveal delay="0.6">
         <div className='space-y-5'>
          {filteredCourses.map(course => (
             <CourseCard key={course.id} title={course.courseName} trainer={course.trainerName} imgUrl={course.img} isDark={isDark} courseId={course.id}
               setCourseId={setCourseId} />
-              ))}
-        </div>
-      </Reveal>    
-      </div>
+          ))}
+              </div>
+      </Reveal>      
+            </div>
       <Reveal delay="0.6" >
-      <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
-        <CourseDescription isDark={isDark} selectedCourse={selectedCourse}/>
-        <div className={style.buttonContainer}>
-        <Link href="./overview">
-          <button onClick={() => handleSendData({courseId: selectedCourse.id })} className={`${style.button} ${isDark ? dark.button : light.button}`}>REVIEW COURSE</button>
-        </Link>
-          <Link href="/#">
-            <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>CONTINUE LEARNING</button>
-          </Link>
-        </div>
-      </div>
-      </Reveal>  
-     
-    </div>)
+            <div className={`${style.right_section} ${isDark ? dark.right_section : light.right_section}`}>
+              <CourseDescription isDark={isDark} selectedCourse={selectedCourse} />
+              <div className={style.buttonContainer}>
+                <button onClick={() => handleSendData({courseId: selectedCourse.id })} className={`${style.button} ${isDark ? dark.button : light.button}`}>{t("button2")}</button>
+                <Link href="/home">
+                  <button className={`${style.linkButton} ${isDark ? dark.linkButton : light.linkButton}`}>{t("button3")}</button>
+                </Link>
+              </div>
+            </div>
+      </Reveal>        
+          </div>)
           
   )
 }

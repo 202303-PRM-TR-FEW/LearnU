@@ -4,6 +4,80 @@
       "text" : "Hangi konuları ilginç bulduğunuzu öğrenin, yeni bir beceri öğrenin ve benzer konularda tutkulu olan insanlarla bağlantı kurun.",
       "button1": "BAŞLAYIN",
       "button2": "GİRİŞ"
-
+    },
+    "home": {
+      "title1" : "Öne Çıkan Kurslar",
+      "button1" : "Daha fazla göster",
+      "title2" : "Kategoriler",
+      "title3" : "Derslerim",
+      "button2" : "Hepsini göster",  
+      "categories": {
+        "1":"Ağ",
+        "2": "Tasarım",
+        "3": "UI/UX",
+        "4": "Pazarlama",
+        "5": "İşletme",
+        "6": "Fotoğrafçılık"
+      },
+      "quote" : "Bilgi güçtür, şimdi yeni bir ders al ve gücü ele geçir."
+    },
+    "aside": {
+      "home" :"Anasayfa",
+      "search" :"Arama",
+      "courses" :"Kurslar",
+      "saved" :"Kaydedilmiş",
+      "profile" :"Profil",
+      "logout" :"Çıkış Yap"
+    },
+    "search": {
+      "title1": "Favorilerinizi Bulun",
+      "placeholder": "Arama kategorileri",
+      "search-button": "ara",
+      "title2": "POPÜLER",
+      "list": { 
+        "1":"Pazarlama Stratejileri",
+        "2":"UX design",
+        "3": "Excel",
+        "4": "Adobe Photoshop",
+        "5": "CRM",
+        "6": "Fotoğrafçılık",
+        "7": "İçerik Pazarlama"
+      },
+      "categories": "KATEGORİLER",
+      "rating": "DEĞERLENDİRME",
+      "level": "SEVİYE",
+      "recomended": "Önerilenler"
+    },
+    "courses": {
+      "button1" : "Kurs satın almak için buraya tıklayın!",
+      "h1": "Derslerim",
+      "button2" : "DERSİ İNCELE",
+      "button3" :"ÖĞRENMEYE DEVAM ET"
+    },
+    "courses-component":{
+      "description":"Ders Tanımı",
+      "complete": "tamamlandı",
+      "h": "s",
+      "m": "dk"
+    },
+    "profile":{
+      "title": "başlık",
+      "achievements":"Başarılar",
+      "committed": "Kararlı Öğrenci",
+      "point": "Puan Toplayıcı",
+      "text" : "3 günlük seriye ulaşın",
+      "text2" :"1800 puan daha kazanın",
+      "mycourses":"KURSLARIM",
+      "savedcourses": "KAYITLI KURSLAR",
+      "following": "TAKİP ETME",
+      "friends": "ARKADAŞLAR",
+      "profile": "PROFİL",
+      "viewall": "HEPSİNİ GÖR",
+      "button1": "Arkadaşlarını Bul",
+      "button2": "Arkaşlarını Davet Et",
+      "h1": "İstatistikler",
+      "hourslearned":"ÖĞRENİLEN SAATLER",
+      "skills": "ELDE EDİLEN BECERİLER",
+      "finished": "TAMAMLANAN KURSLAR"
     }
   }

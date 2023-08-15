@@ -1,16 +1,19 @@
 "use client"
+import { removeMyLearning } from "@/store/userSlice"
+
 import {RxCross2 } from "react-icons/rx"
-
-
 import {createContext} from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { removeMyLearning } from "@/store/userSlice"
+import {useTranslations} from 'next-intl';
+
 
 
 
 export const CourseIdContext = createContext();
 
 const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) => {
+  const t = useTranslations('courses');
+
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     
@@ -19,8 +22,6 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
     };
     const handleRemove = () => {
         dispatch(removeMyLearning(courseId))
-        // console.log(user)
-        // console.log("func call")
     }    
 
     const percentage = "45"
@@ -49,7 +50,7 @@ const CourseCard = ( {isDark, title, trainer, imgUrl, courseId, setCourseId } ) 
                 <div className=' progress-bar w-full sm:h-2.5 bg-gray-200 rounded-full group-hover:bg-white'>
                     <div className=" sm:h-2.5 bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: `${percentage}%` }}> </div>
                 </div>
-                <p className='text-stone-400'> <span> {percentage}% </span> complete </p>
+                <p className='text-stone-400'> <span> {percentage}% </span> {t("complete")} </p>
             </div>
         </div>
     </div>

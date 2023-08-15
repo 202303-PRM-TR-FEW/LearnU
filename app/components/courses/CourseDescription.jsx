@@ -1,7 +1,9 @@
 import React from 'react'
 import {AiFillClockCircle, AiFillStar} from "react-icons/ai"
+import {useTranslations} from 'next-intl';
 
 const CourseDescription = ({isDark, selectedCourse}) => {
+  const t = useTranslations('courses');
   
   const style = {
     container : ` p-5 rounded-xl  h-full flex flex-col font-normal text-sm `,
@@ -42,9 +44,8 @@ const CourseDescription = ({isDark, selectedCourse}) => {
       <div> 
       <div className='flex items-center space-x-1 text-gray-500'>
         <AiFillClockCircle />
-        <p>{selectedCourse.duration.hours}h {selectedCourse.duration.mins}m</p>
+        <p>{selectedCourse.duration.hours}{t("h")}{selectedCourse.duration.mins}{t("m")}</p>
       </div>  
-
       <div className='flex items-center space-x-1 text-gray-500'>
         <AiFillStar />
         <p>{selectedCourse.rating}/5.0</p>
@@ -52,11 +53,10 @@ const CourseDescription = ({isDark, selectedCourse}) => {
       </div>
 
       <div className='space-y-3'>
-        <h3 className='font-bold text-lg '>Course Description</h3>
+        <h3 className='font-bold text-lg '>{t("description")}</h3>
         <p className={style.gray_500}>{courseDescriptionText}</p>
       </div>
     </div>
-
     </div>
   )
 }

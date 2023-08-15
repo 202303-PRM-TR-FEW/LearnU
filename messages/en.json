@@ -4,5 +4,82 @@
       "text" : "Find out what topics you find interesting, learn a new skill & connect with people that are passionate about similar topics.",
       "button1": "GET STARTED",
       "button2": "LOG IN"
+    },
+
+    "home": {
+      "title1" : "Featured Courses",
+      "button1" : "View more",
+      "title2" : "Categories",
+      "title3" : "My Learning",
+      "button2" : "View All",
+      "categories": {
+        "1":"Web",
+        "2": "Design",
+        "3": "UI/UX",
+        "4": "Marketing",
+        "5": "Business",
+        "6": "Photography"
+      },
+      "quote" : "Knowledge is power buy a new course now and gain the power."
+    },
+    "aside": {
+      "home" :"Home",
+      "search" :"Search",
+      "courses" :"Courses",
+      "saved" :"Saved",
+      "profile" :"Profile",
+      "logout" :"Logout"
+    },
+    "search": {
+      "title1": "Find Your Favorites",
+      "placeholder": "Search categories",
+      "search-button": "search",
+      "title2": "TOP SEARCHES",
+      "list": { 
+        "1":"Marketing Strategy",
+        "2":"UX design",
+        "3": "Excel",
+        "4": "Adobe Photoshop",
+        "5": "CRM",
+        "6": "Photography",
+        "7": "Content Marketing"
+      },
+      "categories": "CATEGORIES",
+      "rating": "RATING",
+      "level": "LEVEL",
+      "recomended": "Recomended"
+    },
+    "courses": {
+      "button1" : "To buy courses click here!",
+      "h1": "My Learning",
+      "button2" : "REVIEW COURSE",
+      "button3" :"CONTINUE LEARNING",
+      "savedh1" : "Kaydedilmiş Kurslar"
+    },
+    "courses-component":{
+      "description":"Course Description",
+      "complete": "complete",
+      "h": "h",
+      "m": "m"
+    },
+    "profile":{
+      "title": "title",
+      "achievements":"Achievements",
+      "committed": "Committed Learner",
+      "point": "Point Collector",
+      "text" : "Reach a 3 day streak",
+      "text2" :"Earn 1800 more points",
+      "mycourses":"MY COURSES",
+      "savedcourses": "SAVED COURSES",
+      "following": "FOLLOWING",
+      "friends": "FRIENDS",
+      "profile": "PROFILE",
+      "viewall": "VIEW ALL",
+      "button1": "Find Friends",
+      "button2": "Invite Friends",
+      "h1": "Total Statistics",
+      "hourslearned":"HOURS LEARNED",
+      "skills": "SKILLS ACHIEVED",
+      "finished": "FINISHED COURSES"
     }
   }

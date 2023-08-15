@@ -1,9 +1,11 @@
 import {GrLocationPin} from 'react-icons/gr'
+import {useTranslations} from 'next-intl';
+
 
 const Info = ( { user, userCourseNumber, savedCoursesNumber }) => {
-    // console.log(user)
-    const userStatic = {
+    const t = useTranslations('profile');
 
+    const userStatic = {
         location: "ANKARA",
         profileInfo : {
             followers: "2",
@@ -19,7 +21,7 @@ const Info = ( { user, userCourseNumber, savedCoursesNumber }) => {
 
         
             <div className=' w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden  '>
-                <img className=' w-full h-full object-cover' src={user.image} alt="profile" />
+                <img className=' w-full h-full object-cover' src={user.picture} alt="profile" />
             </div>
         
 
@@ -39,15 +41,15 @@ const Info = ( { user, userCourseNumber, savedCoursesNumber }) => {
 >
                 <div className='text-center'>
                     <p className='font-bold text-base'>{userCourseNumber}</p>
-                    <p>MY COURSES</p>
+                    <p>{t("mycourses")}</p>
                 </div>
                 <div className='text-center'>
                     <p className='font-bold text-base'>{savedCoursesNumber}</p>
-                    <p>SAVED COURSES</p>
+                    <p>{t("savedcourses")}</p>
                 </div>
                 <div className='text-center'>
                     <p className='font-bold text-base'>{userStatic.profileInfo.following}</p>
-                    <p>FOLLOWING</p>
+                    <p>{t("following")}</p>
                 </div>
            </div>
 

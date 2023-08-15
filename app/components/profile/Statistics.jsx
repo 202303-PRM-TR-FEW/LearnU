@@ -2,8 +2,11 @@ import React from 'react'
 import { AiOutlineCheck } from "react-icons/ai";
 import { PiClockCountdownLight } from "react-icons/pi";
 import { FaTrophy } from "react-icons/fa";
+import {useTranslations} from 'next-intl';
 
 export default function Statistics () {
+    const t = useTranslations('profile');
+
     const data = {
         courses : "3",
         hours:"56",
@@ -12,9 +15,10 @@ export default function Statistics () {
     
 
   return (
+    
     <div className='w-full h-full flex flex-col lg:m-5 '>
         <h1 className=' text-3xl font-semibold'>
-            Total Statistics
+            {t("h1")}
         </h1>
 
         <div className=' grid gap-2 mb-12 md:grid-cols-3 sm:grid-cols-2 lg:m-5'>
@@ -23,7 +27,7 @@ export default function Statistics () {
                         <AiOutlineCheck className='text-blue-500' />
                     </div>
                     <div className='w-full px-3 flex flex-col justify-center items-center space-y-2'>
-                        <p className=' text-md sm:text-xs font-medium'>HOURS LEARNED</p>
+                        <p className=' text-md sm:text-xs font-medium'>{t("hourslearned")}</p>
                         <p className='font-bold  text-base'> {data.hours} </p>
                     </div>
             </div>
@@ -32,7 +36,7 @@ export default function Statistics () {
                         <PiClockCountdownLight className='text-orange-500' />
                     </div>
                     <div className='w-full px-3 flex flex-col justify-center items-center space-y-2'>
-                        <p className=' text-md sm:text-xs font-medium'>SKILLS ACHIEVED</p>
+                        <p className=' text-md sm:text-xs font-medium'>{t("skills")}</p>
                         <p className='font-bold  text-base'> {data.skills} </p>
                     </div>
             </div>
@@ -41,7 +45,7 @@ export default function Statistics () {
                         <FaTrophy className='text-lime-500' />
                     </div>
                     <div className='w-full px-3 flex flex-col justify-center items-center space-y-2'>
-                        <p className=' text-md sm:text-xs font-medium'>FINISHED COURSES</p>
+                        <p className=' text-md sm:text-xs font-medium'>{t("finished")}</p>
                         <p className='font-bold  text-base'> {data.courses} </p>
                     </div>
             </div>

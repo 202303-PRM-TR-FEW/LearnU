@@ -1,16 +1,16 @@
 "use client"
-import { Reveal } from "./components/UI/Reveal";
+import { Reveal } from "@/app/components/UI/Reveal";
 
 import { AiOutlineDingding } from "react-icons/ai";
 import {FaLanguage} from "react-icons/fa"
 import { useUser } from '@auth0/nextjs-auth0/client';
-import Link from "next/link"
+// import Link from "next/link"
 import Loading from "./loading";
-// import {useTranslations} from 'next-intl';
-// import Link from "next-intl/link"
+import {useTranslations} from 'next-intl';
+import Link from "next-intl/link"
 
 export default function Home() {
-    // const t = useTranslations('Index');
+    const t = useTranslations('Index');
     const { user, isLoading } = useUser();
 
 if (isLoading) return <Loading />;
@@ -23,12 +23,12 @@ if (isLoading) return <Loading />;
                             <Reveal>
                             <div className="flex items-center space-x-5">
                                 <FaLanguage className="w-10 h-10 text-blue-500"/>
-                                {/* <Link href="/" locale="en" >
+                                <Link href="/" locale="en" >
                                     English
                                 </Link>
                                 <Link href="/" locale="tr" >
                                     Türkçe
-                                </Link> */}
+                                </Link>
                             </div>
                             </Reveal>
                             <Reveal delay="0.6">
@@ -40,10 +40,10 @@ if (isLoading) return <Loading />;
                             <div className="space-y-5 ">
                                 <div className="space-y-5">
                                 <Reveal delay="0.7">
-                                    <h1 className="flex-wrap w-full text-4xl font-semibold text-transparent animate-text bg-clip-text bg-gradient-to-r from-blue-500 via-orange-500 to-purple-500">Discover Your Passion</h1>
+                                    <h1 className="flex-wrap w-full text-4xl font-semibold text-transparent animate-text bg-clip-text bg-gradient-to-r from-blue-500 via-orange-500 to-purple-500">{t('title')}</h1>
                                 </Reveal>    
                                 <Reveal delay="0.8">
-                                    <p className="text-sm text-stone-400">Find out what topics you find interesting, learn a new skill & connect with people that are passionate about similar topics.</p>
+                                    <p className="text-sm text-stone-400">{t('text')}</p>
                                 </Reveal>    
                                 </div>
                                 <Reveal delay="0.9">
@@ -51,13 +51,13 @@ if (isLoading) return <Loading />;
                                     <div>
                                         <button className="buttons bg-blue-500 rounded-md text-stone-100 text-sm p-2 hover:-translate-x-0.5 transition motion-reduce:hover:translate-x-0 hover:bg-blue-400 active:bg-blue-600">
                                             <Link href="/home">
-                                            GET STARTED
+                                            {t('button1')}
                                             </Link>
                                         </button>
                                     </div>
                                     {!user && (<div>
                                         <a href="/api/auth/login" className="inline-block p-2 text-sm text-center rounded-md buttons bg-fuchsia-600 text-stone-100 hover:bg-fuchsia-400 active:bg-fuchsia-600">
-                                        SIGN IN
+                                        {t('button2')}
                                     </a>
                                     </div>
                                     )}

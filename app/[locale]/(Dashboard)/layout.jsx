@@ -1,5 +1,5 @@
 "use client"
-import Aside from "../components/dashboard/Aside";
+import Aside from "../../components/dashboard/Aside";
 import { useState, createContext, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +10,9 @@ import { setUser } from "@/store/userSlice";
 import { fetchUser, sendUser } from "@/store/user-actions";
 import { usePathname } from "next/navigation";
 import Loading from "../loading";
+
+import { GrLanguage } from "react-icons/gr"
+import Link from "next-intl/link"
 
 export const DarkModeContext = createContext();
 
@@ -97,6 +100,15 @@ export default function layout({ children }) {
                             {path}
                         </div>
                         <div className="flex items-center justify-center h-full grow"></div>
+                            <div className="flex items-center space-x-5 px-5">
+                                <GrLanguage className="w-5 h-5 text-white"/>
+                                <Link href="/home" locale="en" className="active:text-black" >
+                                    En
+                                </Link>
+                                <Link href="/home" locale="tr" className="active:text-black" >
+                                    Tr
+                                </Link>
+                            </div>
                         <div className="flex items-center justify-center flex-none h-full text-center">
                             {user ? (
                                 <div className="flex items-center px-3 space-x-3">
